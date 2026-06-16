@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mocha Class</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="주요 메뉴">
+      <a class="brand" href="#" aria-label="Mocha Class 홈">
+        <img src="images/top_logo.png" alt="Mocha Class">
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#service">서비스 소개</a>
+          <ul class="sub-menu">
+            <li><a href="#service">모카클래스 소개</a></li>
+            <li><a href="#">이용 가이드</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#classes">클래스 찾기</a>
+          <ul class="sub-menu">
+            <li><a href="#">오프라인 클래스</a></li>
+            <li><a href="#">라이브 클래스</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#group">단체클래스</a></li>
+        <li class="nav-item">
+          <a href="#partner">파트너 등록</a>
+          <ul class="sub-menu">
+            <li><a href="#">강사·공방 등록</a></li>
+            <li><a href="#">제휴 문의</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#">마이페이지</a>
+          <ul class="sub-menu">
+            <li><a href="#">신청 내역</a></li>
+            <li><a href="#">문의 내역</a></li>
+            <li><a href="#">회원 정보</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+        <button class="search-button" type="button" aria-label="검색"></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="service">
+      <div class="hero-inner">
+        <img class="hero-deco" src="images/hero_deco.png" alt="">
+        <h1><span class="semi">모이는 시간</span>이<br><strong>특별한 경험</strong>이 되도록</h1>
+        <a class="primary-button" href="#classes">클래스 둘러보기</a>
+      </div>
+      <div class="hero-bottom-deco" aria-hidden="true">
+        <img class="hero-deco-wave hero-deco-wave1" src="images/hero_deco1.png" alt="">
+        <img class="hero-deco-wave hero-deco-wave2" src="images/hero_deco2.png" alt="">
+      </div>
+    </section>
+
+    <section class="quick-menu" aria-label="클래스 바로가기">
+      <div class="quick-grid">
+        <a class="quick-item" href="#">
+          <img src="images/btn1.png" alt="">
+          <strong>오프라인 클래스</strong>
+          <span>직접 만나는 수업</span>
+        </a>
+        <a class="quick-item" href="#">
+          <img src="images/btn2.png" alt="">
+          <strong>라이브 클래스</strong>
+          <span>온라인 실시간 수업</span>
+        </a>
+        <a class="quick-item" href="#">
+          <img src="images/btn3.png" alt="">
+          <strong>지역별 클래스</strong>
+          <span>원하는 지역에서 찾기</span>
+        </a>
+        <a class="quick-item" href="#">
+          <img src="images/btn4.png" alt="">
+          <strong>나만의 클래스</strong>
+          <span>기획은 수업 찾기</span>
+        </a>
+        <a class="quick-item" href="#">
+          <img src="images/btn5.png" alt="">
+          <strong>카테고리별 클래스</strong>
+          <span>취향별로 찾기</span>
+        </a>
+        <a class="quick-item" href="#">
+          <img src="images/btn6.png" alt="">
+          <strong>단체 클래스</strong>
+          <span>단체 맞춤 수업</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="popular section-gap" id="classes">
+      <div class="section-title">
+        <span>Popular Class</span>
+        <h2>모카클래스에서 <strong>사랑받는 클래스</strong></h2>
+        <p>기업 워크샵부터 학교 체험활동까지<br>목적과 인원에 맞는 클래스를 간편하게 비교할 수 있습니다.</p>
+      </div>
+
+      <div class="category-row">
+        <div class="category-tabs" aria-label="인기 클래스 카테고리">
+          <button class="active" type="button">단체·모임</button>
+          <button type="button">베이킹·푸드</button>
+          <button type="button">공예·소품</button>
+          <button type="button">아트·드로잉</button>
+          <button type="button">향기·뷰티</button>
+          <button type="button">액티비티·스포츠</button>
+          <button type="button">데이트 코스</button>
+        </div>
+        <div class="category-arrows" aria-label="클래스 목록 이동">
+          <button type="button" aria-label="이전 클래스"><img src="images/left_btn.png" alt=""></button>
+          <button type="button" aria-label="다음 클래스"><img src="images/right_btn.png" alt=""></button>
+        </div>
+      </div>
+
+      <div class="popular-wrap">
+        <div class="line-deco deco-left"></div>
+        <div class="line-deco deco-right"></div>
+        <div class="popular-arrows" aria-hidden="true"><span></span><span></span></div>
+        <div class="dot-deco" aria-hidden="true"></div>
+        <div class="class-grid">
+          <article class="class-card">
+            <img src="images/sec1_img1.png" alt="컵케이크 데코레이션 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>77</b></div>
+              <h3>컵케이크 데코레이션 클래스</h3>
+              <div class="price"><del>57,000원</del><strong><small>5%</small> 53,150원</strong></div>
+            </div>
+          </article>
+          <article class="class-card">
+            <img src="images/sec1_img2.png" alt="도자기 핸드빌딩 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>80</b></div>
+              <h3>도자기 핸드빌딩 클래스</h3>
+              <div class="price"><del>67,000원</del><strong><small>5%</small> 63,650원</strong></div>
+            </div>
+          </article>
+          <article class="class-card">
+            <img src="images/sec1_img3.png" alt="플라워 정기 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em>★ 5.0</em><b>60</b></div>
+              <h3>플라워 정기 클래스</h3>
+              <div class="price"><del>40,000원</del><strong><small>5%</small> 38,000원</strong></div>
+            </div>
+          </article>
+          <article class="class-card">
+            <img src="images/sec1_img4.png" alt="가죽지갑 만들기 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>85</b></div>
+              <h3>가죽지갑 만들기 클래스</h3>
+              <div class="price"><del>77,000원</del><strong><small>15%</small> 65,450원</strong></div>
+            </div>
+          </article>
+          <article class="class-card">
+            <img src="images/sec1_img5.png" alt="아로마 향초 원데이 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>98</b></div>
+              <h3>아로마 향초 원데이 클래스</h3>
+              <div class="price"><del>57,000원</del><strong><small>10%</small> 51,300원</strong></div>
+            </div>
+          </article>
+          <article class="class-card">
+            <img src="images/sec1_img6.png" alt="드로잉 정기 클래스">
+            <div class="card-body">
+              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em>★ 5.0</em><b>68</b></div>
+              <h3>드로잉 정기 클래스</h3>
+              <div class="price"><del>57,000원</del><strong><small>5%</small> 53,150원</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="slider-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+      <a class="outline-button" href="#">클래스 모두 보기</a>
+    </section>
+
+    <section class="group-banner section-gap" id="group">
+      <div class="group-content">
+        <span>B2B Group Class</span>
+        <h2>구성원도 즐겁고 담당자도 편리한<br>모카클래스 단체클래스</h2>
+        <a href="#">B2B 클래스 신청하기</a>
+      </div>
+      <img src="images/sec2_img1.png" alt="단체 베이킹 클래스">
+    </section>
+
+    <section class="reviews section-gap" id="partner">
+      <img class="review-deco deco-a" src="images/sec3_deco1.png" alt="">
+      <img class="review-deco deco-b" src="images/sec3_seco2.png" alt="">
+      <div class="section-title">
+        <span>Class Review</span>
+        <h2>실제 참여자들이 전한 <strong>클래스 후기</strong></h2>
+        <p>참여 목적과 인원에 맞춘 클래스가 더 만족스러운 경험을 만듭니다.</p>
+      </div>
+      <div class="review-grid">
+        <article class="review-card">
+          <img src="images/sec3_img1.png" alt="가죽지갑 만들기 체험">
+          <div>
+            <h3>가죽지갑 만들기 체험 <span>★ 5.0</span></h3>
+            <p>직접 고른 가죽으로 지갑을 만들었어요! 처음 참여해도 차근차근 따라갈 수 있어 만족도가 높아요.</p>
+          </div>
+        </article>
+        <article class="review-card">
+          <img src="images/sec3_img2.png" alt="소형화 클래스 후기">
+          <div>
+            <h3>소형화 클래스 후기 <span>★ 5.0</span></h3>
+            <p>그림이 처음이어도 부담 없이 즐길 수 있었어요. 완성된 작품을 보니 성취감도 더 특별한 시간이었습니다.</p>
+          </div>
+        </article>
+        <article class="review-card">
+          <img src="images/sec3_img3.png" alt="자개 클래스">
+          <div>
+            <h3>빛을 품은 조각 모음 자개 클래스 <span>★ 5.0</span></h3>
+            <p>초롱초롱 빛나는 섬세한 자개가 수업 내내 예뻤어요. 작은 조각을 하나씩 붙이며 마음까지 차분해졌습니다.</p>
+          </div>
+        </article>
+      </div>
+      <a class="outline-button" href="#">더 많은 후기 보기</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/footer_logo.png" alt="Mocha Class">
+        <p>일상의 따뜻한 취미와 새로운 만남, 모카클래스<br>Let's make more chance with Mocha class</p>
+      </div>
+      <div class="footer-info">
+        <ul>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">사업자정보확인</a></li>
+          <li><a href="#">서비스소개</a></li>
+        </ul>
+        <p>주식회사 모카클래스 | 대표 정윤지 | 사업자등록번호 285-81-02564 | 통신판매업 2021-서울강남-0652</p>
+        <p>주소 서울특별시 강남구 봉은사로 509 | Tel 070-7576-1572 | Email hello@mochaclass.com</p>
+      </div>
+      <a class="footer-button" href="#">고객센터 문의하기</a>
+    </div>
+  </footer>
+  <script>
+    const categoryTabs = document.querySelector('.category-tabs');
+
+    if (categoryTabs) {
+      const categoryButtons = Array.from(categoryTabs.querySelectorAll('button'));
+
+      const moveCategoryPill = (button) => {
+        const styles = getComputedStyle(categoryTabs);
+        const pillPad = parseFloat(styles.getPropertyValue('--pill-pad')) || 0;
+        const left = Math.max(0, button.offsetLeft - pillPad);
+        const maxWidth = categoryTabs.clientWidth - left;
+        const width = Math.min(button.offsetWidth + pillPad * 2, maxWidth);
+
+        categoryTabs.style.setProperty('--active-left', `${left}px`);
+        categoryTabs.style.setProperty('--active-top', `${button.offsetTop}px`);
+        categoryTabs.style.setProperty('--active-width', `${width}px`);
+        categoryTabs.style.setProperty('--active-height', `${button.offsetHeight}px`);
+      };
+
+      const setActiveCategory = (button) => {
+        categoryButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle('active', isActive);
+          item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        moveCategoryPill(button);
+      };
+
+      categoryButtons.forEach((button) => {
+        button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
+        button.addEventListener('click', () => setActiveCategory(button));
+      });
+
+      moveCategoryPill(categoryTabs.querySelector('.active') || categoryButtons[0]);
+      window.addEventListener('resize', () => {
+        moveCategoryPill(categoryTabs.querySelector('.active') || categoryButtons[0]);
+      });
+    }
+  </script>
+</body>
+</html>
