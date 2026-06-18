@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오프라인 클래스 | Mocha Class</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/offline-class.css">
+</head>
+<body class="oc-page">
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="주요 메뉴">
+      <a class="brand" href="index.html" aria-label="Mocha Class 홈">
+        <img src="images/top_logo.png" alt="Mocha Class">
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html#service">서비스 소개</a>
+          <ul class="sub-menu">
+            <li><a href="index.html#service">모카클래스 소개</a></li>
+            <li><a href="#">이용 가이드</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+          </ul>
+        </li>
+        <li class="nav-item is-current" aria-current="page">
+          <a href="offline-class.html">클래스 찾기</a>
+          <ul class="sub-menu">
+            <li><a href="offline-class.html">오프라인 클래스</a></li>
+            <li><a href="#">라이브 클래스</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="index.html#group">단체클래스</a></li>
+        <li class="nav-item">
+          <a href="index.html#partner">파트너 등록</a>
+          <ul class="sub-menu">
+            <li><a href="#">강사·공방 등록</a></li>
+            <li><a href="#">제휴 문의</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#">마이페이지</a>
+          <ul class="sub-menu">
+            <li><a href="#">신청 내역</a></li>
+            <li><a href="#">문의 내역</a></li>
+            <li><a href="#">회원 정보</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+        <button class="search-button" type="button" aria-label="검색"></button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="oc-page-main">
+    <!-- 히어로 -->
+    <section class="oc-hero">
+      <div class="oc-hero-text">
+        <h1>오프라인 클래스</h1>
+        <p>오프라인으로 개설된 클래스를 찾아보세요</p>
+      </div>
+    </section>
+
+    <!-- 검색 필터 박스 -->
+    <section class="oc-filter-wrap" aria-label="클래스 검색 필터">
+      <div class="oc-filter-card">
+        <!-- 현재 위치 -->
+        <div class="oc-location">
+          <span class="oc-loc-label">현재 위치</span>
+          <strong class="oc-loc-name" id="ocLocName">성수동</strong>
+          <div class="oc-loc-btns">
+            <button type="button" class="oc-loc-btn" id="ocChangeLoc">위치 변경</button>
+            <button type="button" class="oc-loc-btn" id="ocMyLoc">내 위치</button>
+          </div>
+        </div>
+
+        <div class="oc-divider" aria-hidden="true"></div>
+
+        <!-- 검색 영역 -->
+        <div class="oc-search-area">
+          <form class="oc-search" id="ocSearchForm" role="search">
+            <span class="oc-search-ico" aria-hidden="true"><img src="images/sub1_icon5.png" alt=""></span>
+            <input id="ocKeyword" type="text" placeholder="원하는 클래스, 키워드를 검색해보세요." aria-label="클래스 검색">
+          </form>
+
+          <!-- 클래스 유형 탭 -->
+          <div class="oc-tabs" role="tablist" aria-label="클래스 유형">
+            <button type="button" class="oc-tab" data-type="all" role="tab">전체</button>
+            <button type="button" class="oc-tab active" data-type="offline" role="tab" aria-selected="true">오프라인</button>
+            <button type="button" class="oc-tab" data-type="live" role="tab">라이브</button>
+            <button type="button" class="oc-tab" data-type="near" role="tab">내주변</button>
+            <button type="button" class="oc-tab" data-type="region" role="tab">지역별</button>
+            <button type="button" class="oc-tab" data-type="category" role="tab">카테고리별</button>
+          </div>
+
+          <!-- 필터 행 -->
+          <div class="oc-filter-row">
+            <div class="oc-filter" data-filter="region">
+              <button type="button" class="oc-filter-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="oc-fi-icon" aria-hidden="true"><img src="images/sub1_icon1.png" alt=""></span>
+                <span class="oc-filter-name">지역</span>
+                <span class="oc-filter-val">전체</span>
+                <span class="oc-chevron" data-icon="chevron" aria-hidden="true"></span>
+              </button>
+              <div class="oc-dropdown" role="menu"></div>
+            </div>
+
+            <div class="oc-filter" data-filter="category">
+              <button type="button" class="oc-filter-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="oc-fi-icon" aria-hidden="true"><img src="images/sub1_icon2.png" alt=""></span>
+                <span class="oc-filter-name">카테고리</span>
+                <span class="oc-filter-val">전체</span>
+                <span class="oc-chevron" data-icon="chevron" aria-hidden="true"></span>
+              </button>
+              <div class="oc-dropdown" role="menu"></div>
+            </div>
+
+            <div class="oc-filter" data-filter="day">
+              <button type="button" class="oc-filter-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="oc-fi-icon" aria-hidden="true"><img src="images/sub1_icon3.png" alt=""></span>
+                <span class="oc-filter-name">요일</span>
+                <span class="oc-filter-val">전체</span>
+                <span class="oc-chevron" data-icon="chevron" aria-hidden="true"></span>
+              </button>
+              <div class="oc-dropdown" role="menu"></div>
+            </div>
+
+            <div class="oc-filter" data-filter="price">
+              <button type="button" class="oc-filter-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="oc-fi-icon" aria-hidden="true"><img src="images/sub1_icon4.png" alt=""></span>
+                <span class="oc-filter-name">금액</span>
+                <span class="oc-filter-val">전체</span>
+                <span class="oc-chevron" data-icon="chevron" aria-hidden="true"></span>
+              </button>
+              <div class="oc-dropdown align-right" role="menu"></div>
+            </div>
+
+            <div class="oc-filter" data-filter="detail">
+              <button type="button" class="oc-filter-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="oc-fi-icon" data-icon="plus" aria-hidden="true"></span>
+                <span class="oc-filter-name">상세필터</span>
+                <span class="oc-detail-count" id="ocDetailCount" hidden>0</span>
+                <span class="oc-chevron" data-icon="chevron" aria-hidden="true"></span>
+              </button>
+              <div class="oc-dropdown wide align-right" role="menu"></div>
+            </div>
+
+            <button type="button" class="oc-reset-btn" id="ocResetAll">
+              <span class="oc-reset-ico" data-icon="refresh" aria-hidden="true"></span>초기화
+            </button>
+            <button type="button" class="oc-search-submit" id="ocSubmit">검색하기</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 검색 결과 -->
+    <section class="oc-result">
+      <div class="oc-result-head">
+        <h2 class="oc-result-title"><b id="ocResultLoc">성수동</b> 근처 클래스 <em id="ocResultCount">0</em>개</h2>
+        <div class="oc-view-toggle" role="group" aria-label="보기 방식">
+          <button type="button" data-view="map" class="active"><span data-icon="map" aria-hidden="true"></span>지도 보기</button>
+          <button type="button" data-view="list"><span data-icon="list" aria-hidden="true"></span>리스트 보기</button>
+        </div>
+      </div>
+
+      <div class="oc-result-body" id="ocResultBody" data-view="map">
+        <!-- 왼쪽 리스트 -->
+        <div class="oc-list" id="ocList" aria-live="polite"></div>
+
+        <!-- 오른쪽 지도 -->
+        <div class="oc-map-pane">
+          <div class="oc-map" id="ocMap">
+            <div class="oc-map-bg" id="ocMapBg">
+              <div class="oc-markers" id="ocMarkers"></div>
+              <div class="oc-map-center" id="ocMapCenter"><span class="oc-mc-ico" data-icon="myLocation" aria-hidden="true"></span>성수동</div>
+            </div>
+            <button type="button" class="oc-map-search" id="ocMapSearch">
+              <span class="oc-ms-icon" data-icon="search" aria-hidden="true"></span>
+              <span class="oc-ms-text">현재 지도에서 검색</span>
+            </button>
+            <div class="oc-zoom" role="group" aria-label="지도 확대 축소">
+              <button type="button" id="ocZoomIn" aria-label="확대">+</button>
+              <button type="button" id="ocZoomOut" aria-label="축소">−</button>
+            </div>
+            <div class="oc-legend" aria-hidden="true">
+              <span><span class="lg-ico lg-pin" data-icon="markerPin"></span>클래스 위치</span>
+              <span><i class="lg-cluster"></i>클러스터</span>
+              <span><span class="lg-ico lg-me" data-icon="myLocation"></span>내 위치</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 위치 변경 모달 -->
+  <div class="oc-modal" id="ocLocModal" hidden>
+    <div class="oc-modal-dim" id="ocLocDim"></div>
+    <div class="oc-modal-box" role="dialog" aria-modal="true" aria-label="지역 선택">
+      <h3>지역을 선택해주세요</h3>
+      <button type="button" class="oc-modal-close" id="ocLocClose" aria-label="닫기">×</button>
+      <ul class="oc-loc-list" id="ocLocList"></ul>
+    </div>
+  </div>
+
+  <!-- 토스트 -->
+  <div class="oc-toast" id="ocToast" role="status" hidden></div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/footer_logo.png" alt="Mocha Class">
+        <p>일상의 따뜻한 취미와 새로운 만남, 모카클래스<br>Let's make more chance with Mocha class</p>
+      </div>
+      <div class="footer-info">
+        <ul>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">사업자정보확인</a></li>
+          <li><a href="#">서비스소개</a></li>
+        </ul>
+        <p>주식회사 모카클래스 | 대표 정윤지 | 사업자등록번호 285-81-02564 | 통신판매업 2021-서울강남-0652</p>
+        <p>주소 서울특별시 강남구 봉은사로 509 | Tel 070-7576-1572 | Email hello@mochaclass.com</p>
+      </div>
+      <div class="footer-cs">
+        <a class="footer-button" href="#">고객센터 문의하기</a>
+        <p style="margin-top:10px;color:#998f89;font-size:12px;text-align:center;">운영시간 평일 10:00~18:00</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/class-data.js"></script>
+  <script src="js/offline-class.js"></script>
+</body>
+</html>

@@ -27,9 +27,9 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#classes">클래스 찾기</a>
+          <a href="offline-class.html">클래스 찾기</a>
           <ul class="sub-menu">
-            <li><a href="#">오프라인 클래스</a></li>
+            <li><a href="offline-class.html">오프라인 클래스</a></li>
             <li><a href="#">라이브 클래스</a></li>
           </ul>
         </li>
@@ -73,7 +73,7 @@
 
     <section class="quick-menu" aria-label="클래스 바로가기">
       <div class="quick-grid">
-        <a class="quick-item" href="#">
+        <a class="quick-item" href="offline-class.html">
           <img src="images/btn1.png" alt="">
           <strong>오프라인 클래스</strong>
           <span>직접 만나는 수업</span>
@@ -290,6 +290,26 @@
       window.addEventListener('resize', () => {
         moveCategoryPill(categoryTabs.querySelector('.active') || categoryButtons[0]);
       });
+    }
+
+    // 모바일 햄버거: 네비게이션 펼치기/접기
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navShell = document.querySelector('.nav-shell');
+    const navMenu = document.querySelector('.nav-menu');
+    if (menuToggle && navShell) {
+      const closeNav = () => {
+        navShell.classList.remove('is-nav-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      };
+      menuToggle.addEventListener('click', () => {
+        const open = navShell.classList.toggle('is-nav-open');
+        menuToggle.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      if (navMenu) {
+        navMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
+      }
     }
   </script>
 </body>
