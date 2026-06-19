@@ -1,0 +1,240 @@
+/* =========================================================
+   클래스 후기 (Reviews) 페이지 전용 스타일
+   - 공통 헤더/푸터/폰트/리셋은 style.css 재사용
+   - 이 파일은 reviews.html 에서만 로드되므로 다른 페이지 영향 없음
+   - rv- 네임스페이스 / 호버 효과 없음
+   ========================================================= */
+:root {
+  --rv-orange: #ff8a2b;
+  --rv-orange-dark: #f27a1a;
+  --rv-orange-soft: #fff3e8;
+  --rv-text: #2c2622;
+  --rv-muted: #877d76;
+  --rv-border: #ece3db;
+  --rv-bg: #fffaf4;
+  --rv-surface: #ffffff;
+  --rv-container: 1120px;
+  --rv-shadow: 0 18px 44px rgba(120, 84, 50, 0.10);
+}
+
+.rv-page { background: var(--rv-bg); }
+.rv-main { position: relative; font-weight: 300; }
+
+.rv-wrap {
+  width: min(var(--rv-container), calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* ===== 헤더 오버라이드 (주황 히어로 위 흰색 메뉴) ===== */
+.rv-page .nav-shell {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.16);
+}
+.rv-page .nav-item > a,
+.rv-page .nav-actions a {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  font-weight: 400;
+}
+.rv-page .nav-item.is-current > a {
+  font-weight: 400;
+  -webkit-text-fill-color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+}
+.rv-page .sub-menu a { -webkit-text-fill-color: transparent; }
+.rv-page .search-button { filter: brightness(0) invert(1); }
+.rv-page .menu-toggle span { background: #ffffff; }
+
+/* ===== 공통 타이포 ===== */
+.rv-eyebrow {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rv-orange-dark);
+  margin-bottom: 16px;
+}
+.rv-eyebrow--light { color: rgba(255, 255, 255, 0.9); }
+
+.rv-h2 {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--rv-text);
+}
+.rv-h2 strong { font-weight: 600; color: var(--rv-orange-dark); }
+
+.rv-section { padding: 110px 0; }
+.rv-section-head { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+.rv-sub { margin: 18px 0 0; color: var(--rv-muted); font-size: 17px; line-height: 1.7; }
+.rv-sub b { color: var(--rv-orange-dark); font-weight: 600; }
+
+/* ===== 버튼 (호버 효과 없음) ===== */
+.rv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.rv-btn--solid {
+  background: #ffffff;
+  color: var(--rv-orange-dark);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+.rv-btn--ghost {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+/* ===== 히어로 (다른 서브페이지와 높이 동일: 492px) ===== */
+.rv-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 492px;
+  padding: 24px;
+  overflow: hidden;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(120deg, #ff9b3e 0%, #f27a1a 55%, #e76d0f 100%);
+}
+.rv-hero::before,
+.rv-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  pointer-events: none;
+}
+.rv-hero::before { top: -110px; left: -70px; width: 320px; height: 320px; }
+.rv-hero::after { right: -80px; bottom: -150px; width: 380px; height: 380px; }
+.rv-hero-inner { position: relative; z-index: 1; }
+.rv-hero-title { margin: 0; font-size: 50px; font-weight: 500; letter-spacing: 0.5px; }
+.rv-hero-sub { margin: 16px 0 0; font-size: 18px; font-weight: 200; opacity: 0.95; }
+
+/* ===== 후기 공통 요소 ===== */
+.rv-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--rv-orange-soft);
+  color: var(--rv-orange-dark);
+  font-size: 14px;
+  font-weight: 500;
+}
+.rv-stars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.rv-star-ico { display: inline-flex; gap: 3px; }
+.rv-star-ico img { width: 18px; height: 18px; object-fit: contain; display: block; }
+.rv-stars b { color: var(--rv-text); font-size: 16px; font-weight: 600; }
+.rv-quote {
+  position: relative;
+  margin: 0;
+  color: var(--rv-muted);
+  line-height: 1.85;
+}
+.rv-quote::before {
+  content: "\201C";
+  display: block;
+  font-size: 46px;
+  line-height: 0.6;
+  color: rgba(242, 122, 26, 0.28);
+  margin-bottom: 6px;
+}
+
+/* ===== 대표 후기 (가로형) ===== */
+.rv-feature {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  margin-bottom: 32px;
+  background: var(--rv-surface);
+  border: 1px solid var(--rv-border);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--rv-shadow);
+}
+.rv-feature-img { min-height: 340px; }
+.rv-feature-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rv-feature-body { padding: 48px 48px; align-self: center; }
+.rv-feature-body h3 { margin: 0 0 16px; font-size: 26px; font-weight: 600; color: var(--rv-text); }
+.rv-feature-body .rv-quote { font-size: 17px; }
+
+/* ===== 후기 그리드 ===== */
+.rv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--rv-surface);
+  border: 1px solid var(--rv-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.rv-card-img { height: 220px; }
+.rv-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rv-card-body { padding: 28px 28px 32px; }
+.rv-card-body h3 { margin: 0 0 14px; font-size: 21px; font-weight: 600; color: var(--rv-text); }
+.rv-card-body .rv-quote { font-size: 16px; }
+
+/* ===== CTA 배너 ===== */
+.rv-cta {
+  padding: 96px 0;
+  background: linear-gradient(120deg, #ffa24d 0%, #f5821e 52%, #e76d0f 100%);
+  color: #ffffff;
+}
+.rv-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.rv-cta-title { margin: 0 0 12px; font-size: 34px; font-weight: 300; line-height: 1.4; }
+.rv-cta-text p { margin: 0; font-size: 17px; opacity: 0.92; }
+.rv-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 1024px) {
+  .rv-h2 { font-size: 32px; }
+  .rv-hero-title { font-size: 42px; }
+  .rv-feature-body { padding: 36px; }
+  .rv-section { padding: 84px 0; }
+}
+
+@media (max-width: 680px) {
+  .rv-hero { padding: 24px 22px; }
+  .rv-hero-title { font-size: 34px; }
+  .rv-hero-sub { font-size: 15px; }
+  .rv-h2 { font-size: 27px; }
+  .rv-section { padding: 64px 0; }
+  .rv-section-head { margin-bottom: 40px; }
+  .rv-feature { grid-template-columns: 1fr; }
+  .rv-feature-img { min-height: 220px; height: 220px; }
+  .rv-feature-body { padding: 28px 24px 32px; }
+  .rv-feature-body h3 { font-size: 22px; }
+  .rv-grid { grid-template-columns: 1fr; gap: 22px; }
+  .rv-cta-inner { flex-direction: column; text-align: center; }
+  .rv-cta-btns { justify-content: center; width: 100%; }
+  .rv-btn { width: 100%; }
+}

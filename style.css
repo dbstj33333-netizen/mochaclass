@@ -712,6 +712,22 @@ img {
   background-size: 18px 18px;
 }
 
+/* 인기 클래스 캐러셀 (페이지 단위 슬라이드) */
+.class-carousel {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-top: 24px;
+  padding-bottom: 52px;
+  margin-top: -24px;
+  margin-bottom: -52px;
+}
+.class-track {
+  display: flex;
+  transition: transform .45s ease;
+}
+.class-page { flex: 0 0 100%; min-width: 0; }
+
 .class-grid {
   position: relative;
   z-index: 1;
@@ -766,14 +782,25 @@ img {
 
 .tag-row em {
   justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   color: var(--orange);
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
 }
 
+.tag-row .star-ico {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
 .tag-row b {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   color: #777777;
   font-size: 14px;
   font-weight: 400;
@@ -782,11 +809,10 @@ img {
 .tag-row b::before {
   content: "";
   display: inline-block;
-  width: 9px;
-  height: 9px;
+  width: 14px;
+  height: 14px;
   margin-right: 5px;
-  border-radius: 50%;
-  background: #ff6d86;
+  background: url("images/heart_icon.png") center / contain no-repeat;
 }
 
 .class-card h3 {
@@ -880,6 +906,7 @@ img {
   height: 10px;
   border: 1px solid var(--orange);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .slider-dots .active {
@@ -903,6 +930,23 @@ section > .outline-button,
   display: flex;
   margin-right: auto;
   margin-left: auto;
+}
+
+/* 데스크톱: 사랑받는 클래스 3×2로 한 화면에 모두 노출 (카드 높이 축소) */
+@media (min-width: 1280px) {
+  .class-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px 24px;
+  }
+  .class-card {
+    height: auto;
+    padding: 16px 16px 18px;
+  }
+  .card-body { padding: 12px 0 0; }
+  .class-card > img { aspect-ratio: 2 / 1; }
+  .tag-row span { min-width: 0; padding: 3px 9px; font-size: 12px; }
+  .class-card h3 { font-size: 17px; margin: 9px 0 2px; line-height: 1.3; }
+  .price strong { font-size: 16px; }
 }
 
 
@@ -992,46 +1036,55 @@ section > .outline-button,
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-  width: 1520px;
+  gap: 26px;
+  width: 1180px;
   max-width: calc(100% - 112px);
-  margin: 76px auto 48px;
+  margin: 70px auto 44px;
 }
 
 .review-card > img {
   width: 100%;
-  aspect-ratio: 487 / 424;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
 }
 
 .review-card div {
-  min-height: 162px;
-  padding: 23px 28px 29px;
+  min-height: 0;
+  padding: 16px 20px 20px;
 }
 
 .review-card h3 {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 17px;
+  gap: 12px;
+  margin: 0 0 9px;
   color: #222222;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.35;
   font-weight: 400;
 }
 
 .review-card h3 span {
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   color: var(--orange);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
+}
+
+.review-card h3 span img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
 }
 
 .review-card p {
   margin: 0;
   color: #666666;
-  font-size: 18px;
-  line-height: 1.72;
+  font-size: 14px;
+  line-height: 1.6;
   font-weight: 300;
 }
 
@@ -1282,8 +1335,64 @@ section > .outline-button,
   .deco-b { left: -280px; }
 }
 
+/* 스크롤 등장 애니메이션 (JS가 .reveal 부여 → 점진적 향상) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* 네비 항목 숨김 보장 (로그인 상태 토글용) */
+.nav-menu [hidden],
+.nav-actions [hidden] { display: none !important; }
+
+/* 맨 위로 이동 플로팅 버튼 */
+.to-top {
+  position: fixed;
+  right: clamp(16px, 2.6vw, 40px);
+  bottom: clamp(16px, 2.6vw, 40px);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffa24d 0%, #f5821e 100%);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px) scale(0.92);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.to-top:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+.to-top:active { transform: translateY(-1px) scale(0.98); }
+.to-top:focus-visible { outline: 3px solid rgba(255, 255, 255, 0.85); outline-offset: 3px; }
+.to-top svg { width: 24px; height: 24px; display: block; }
+@media (max-width: 480px) {
+  .to-top { width: 46px; height: 46px; }
+  .to-top svg { width: 20px; height: 20px; }
+}
+
 /* 모션 최소화 환경 존중 */
 @media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;

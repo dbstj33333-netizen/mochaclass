@@ -20,9 +20,9 @@
       </button>
       <ul class="nav-menu">
         <li class="nav-item">
-          <a href="index.html#service">서비스 소개</a>
+          <a href="about.html">서비스 소개</a>
           <ul class="sub-menu">
-            <li><a href="index.html#service">모카클래스 소개</a></li>
+            <li><a href="about.html">모카클래스 소개</a></li>
             <li><a href="#">이용 가이드</a></li>
             <li><a href="#">자주 묻는 질문</a></li>
           </ul>
@@ -32,6 +32,7 @@
           <ul class="sub-menu">
             <li><a href="offline-class.html">오프라인 클래스</a></li>
             <li><a href="#">라이브 클래스</a></li>
+            <li><a href="reviews.html">클래스 후기</a></li>
           </ul>
         </li>
         <li class="nav-item"><a href="index.html#group">단체클래스</a></li>
@@ -42,7 +43,7 @@
             <li><a href="#">제휴 문의</a></li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-mypage" hidden>
           <a href="#">마이페이지</a>
           <ul class="sub-menu">
             <li><a href="#">신청 내역</a></li>
@@ -52,8 +53,9 @@
         </li>
       </ul>
       <div class="nav-actions">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
+        <a class="nav-login" href="#">로그인</a>
+        <a class="nav-signup" href="#">회원가입</a>
+        <a class="nav-logout" href="#" hidden>로그아웃</a>
         <button class="search-button" type="button" aria-label="검색"></button>
       </div>
     </nav>
@@ -225,7 +227,7 @@
           <li><a href="#">이용약관</a></li>
           <li><a href="#">개인정보처리방침</a></li>
           <li><a href="#">사업자정보확인</a></li>
-          <li><a href="#">서비스소개</a></li>
+          <li><a href="about.html">서비스소개</a></li>
         </ul>
         <p>주식회사 모카클래스 | 대표 정윤지 | 사업자등록번호 285-81-02564 | 통신판매업 2021-서울강남-0652</p>
         <p>주소 서울특별시 강남구 봉은사로 509 | Tel 070-7576-1572 | Email hello@mochaclass.com</p>
@@ -237,7 +239,12 @@
     </div>
   </footer>
 
+  <button class="to-top" type="button" aria-label="맨 위로 이동">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  </button>
+
   <script src="js/class-data.js"></script>
   <script src="js/offline-class.js"></script>
+  <script src="js/common.js"></script>
 </body>
 </html>

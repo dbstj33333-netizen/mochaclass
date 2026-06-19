@@ -29,7 +29,8 @@
 
 .oc-page-main {
   position: relative;
-  font-weight: 300;
+  font-weight: 200;
+  font-size: 18px;
 }
 
 /* ===== 헤더 오버라이드 (오렌지 히어로 위 흰색 메뉴) ===== */
@@ -43,10 +44,11 @@
   color: #ffffff;
   background: none;
   -webkit-text-fill-color: #ffffff;
+  font-weight: 400;
 }
 
 .oc-page .nav-item.is-current > a {
-  font-weight: 600;
+  font-weight: 400;
   -webkit-text-fill-color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 7px;
@@ -66,8 +68,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 522px;
-  padding-top: 110px;
+  min-height: 492px;
+  padding-top: 0;
   overflow: hidden;
   background: linear-gradient(120deg, #ff9b3e 0%, #f27a1a 55%, #e76d0f 100%);
   color: #ffffff;
@@ -86,8 +88,8 @@
 .oc-hero::after { right: -80px; bottom: -150px; width: 380px; height: 380px; }
 
 .oc-hero-text { position: relative; z-index: 1; }
-.oc-hero-text h1 { margin: 0; font-size: 50px; font-weight: 600; letter-spacing: 0.5px; }
-.oc-hero-text p { margin: 16px 0 0; font-size: 18px; font-weight: 200; opacity: 0.92; }
+.oc-hero-text h1 { margin: 0; font-size: 50px; font-weight: 500; letter-spacing: 0.5px; }
+.oc-hero-text p { margin: 16px 0 0; font-size: 18px; font-weight: 100; opacity: 0.92; }
 
 /* ===== 검색 필터 박스 (히어로에 걸침) ===== */
 .oc-filter-wrap {
@@ -118,8 +120,8 @@
   gap: 6px;
   text-align: center;
 }
-.oc-loc-label { color: var(--primary); font-size: 12px; font-weight: 500; }
-.oc-loc-name { font-size: 24px; font-weight: 600; color: var(--oc-text); }
+.oc-loc-label { color: var(--primary); font-size: 15px; font-weight: 400; }
+.oc-loc-name { font-size: 24px; font-weight: 500; color: var(--oc-text); }
 .oc-loc-btns { display: flex; gap: 6px; margin-top: 6px; }
 .oc-loc-btn {
   padding: 6px 11px;
@@ -127,7 +129,7 @@
   border-radius: 5px;
   background: #fff;
   color: var(--oc-muted);
-  font-size: 12px;
+  font-size: 15px;
   cursor: pointer;
   transition: border-color .15s ease, color .15s ease;
 }
@@ -155,7 +157,7 @@
   height: 100%;
   border: 0;
   background: transparent;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--oc-text);
 }
 .oc-search input::placeholder { color: #b6ada5; }
@@ -171,11 +173,11 @@
   border: 0;
   background: none;
   color: var(--oc-muted);
-  font-size: 13px;
+  font-size: 15px;
   cursor: pointer;
   white-space: nowrap;
 }
-.oc-tab.active { color: var(--primary); font-weight: 600; }
+.oc-tab.active { color: var(--primary); font-weight: 500; }
 
 /* 필터 행 */
 .oc-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -199,8 +201,8 @@
 .oc-fi-icon img { width: 16px; height: 16px; object-fit: contain; display: block; }
 .oc-search-ico { display: inline-flex; align-items: center; flex: 0 0 auto; }
 .oc-search-ico img { width: 18px; height: 18px; object-fit: contain; display: block; }
-.oc-filter-name { color: var(--oc-muted); font-size: 12px; }
-.oc-filter-val { color: var(--oc-text); font-size: 13px; font-weight: 500; }
+.oc-filter-name { color: var(--oc-muted); font-size: 15px; }
+.oc-filter-val { color: var(--oc-text); font-size: 15px; font-weight: 400; }
 .oc-chevron { flex: 0 0 auto; color: #b6ada5; transition: transform .2s ease; }
 .oc-chevron svg { width: 12px; height: 12px; }
 .oc-filter-btn[aria-expanded="true"] .oc-chevron { transform: rotate(180deg); }
@@ -223,8 +225,8 @@
   border-radius: 9px;
   background: var(--primary);
   color: #fff;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .oc-reset-btn {
@@ -238,7 +240,7 @@
   border-radius: 7px;
   background: #fff;
   color: var(--oc-muted);
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   transition: border-color .15s ease, color .15s ease;
 }
@@ -254,8 +256,8 @@
   border-radius: 7px;
   background: var(--primary);
   color: #fff;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
   cursor: pointer;
   transition: background .15s ease, transform .05s ease;
 }
@@ -285,7 +287,7 @@
 .oc-detail-grid .span-all { grid-column: 1 / -1; }
 .oc-detail-grid .oc-dd-title { padding: 2px 6px; }
 .oc-detail-grid .oc-dd-chips { gap: 5px; padding: 2px 4px; }
-.oc-detail-grid .oc-chip { padding: 5px 10px; font-size: 12.5px; }
+.oc-detail-grid .oc-chip { padding: 5px 10px; font-size: 15px; }
 
 .oc-opt {
   display: flex;
@@ -297,12 +299,12 @@
   border-radius: 7px;
   background: none;
   color: var(--oc-text);
-  font-size: 14px;
+  font-size: 15px;
   text-align: left;
   cursor: pointer;
 }
 .oc-opt:hover { background: var(--primary-light); }
-.oc-opt.selected { color: var(--primary); font-weight: 500; }
+.oc-opt.selected { color: var(--primary); font-weight: 400; }
 .oc-opt .oc-check { width: 16px; height: 16px; color: var(--primary); visibility: hidden; }
 .oc-opt.selected .oc-check { visibility: visible; }
 
@@ -313,24 +315,24 @@
   gap: 9px;
   padding: 8px 10px;
   border-radius: 7px;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 .oc-check-opt:hover { background: var(--primary-light); }
 .oc-check-opt input { accent-color: var(--primary); width: 16px; height: 16px; }
 
 .oc-dd-group + .oc-dd-group { margin-top: 6px; border-top: 1px solid #f1e9e1; padding-top: 8px; }
-.oc-dd-title { padding: 4px 10px; color: var(--oc-muted); font-size: 12px; font-weight: 500; }
+.oc-dd-title { padding: 4px 10px; color: var(--oc-muted); font-size: 15px; font-weight: 400; }
 .oc-dd-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 6px; }
 .oc-chip {
   padding: 6px 12px;
   border: 1px solid var(--oc-border);
   border-radius: 999px;
   background: #fff;
-  font-size: 13px;
+  font-size: 15px;
   cursor: pointer;
 }
-.oc-chip.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); font-weight: 500; }
+.oc-chip.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); font-weight: 400; }
 
 .oc-price-inputs { display: flex; align-items: center; gap: 6px; padding: 8px 6px 2px; }
 .oc-price-inputs input {
@@ -339,17 +341,17 @@
   padding: 0 10px;
   border: 1px solid var(--oc-border);
   border-radius: 7px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .oc-price-inputs input:focus { outline: none; border-color: var(--primary); }
 .oc-price-inputs span { color: var(--oc-muted); }
-.oc-price-error { padding: 4px 10px; color: #e0483a; font-size: 12px; min-height: 16px; }
+.oc-price-error { padding: 4px 10px; color: #e0483a; font-size: 15px; min-height: 16px; }
 
 .oc-dd-actions { display: flex; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1e9e1; }
-.oc-dd-actions button { flex: 1; height: 38px; border-radius: 7px; font-size: 13px; cursor: pointer; }
+.oc-dd-actions button { flex: 1; height: 38px; border-radius: 7px; font-size: 15px; cursor: pointer; }
 .oc-dd-reset { border: 1px solid var(--oc-border); background: #fff; color: var(--oc-muted); }
 .oc-dd-reset:hover { border-color: var(--primary); color: var(--primary); }
-.oc-dd-apply { border: 0; background: var(--primary); color: #fff; font-weight: 500; }
+.oc-dd-apply { border: 0; background: var(--primary); color: #fff; font-weight: 400; }
 .oc-dd-apply:hover { background: var(--primary-dark); }
 .oc-dd-apply:disabled { opacity: .55; cursor: default; }
 
@@ -365,9 +367,9 @@
   gap: 16px;
   margin-bottom: 22px;
 }
-.oc-result-title { margin: 0; font-size: 22px; font-weight: 600; color: var(--oc-text); }
+.oc-result-title { margin: 0; font-size: 22px; font-weight: 500; color: var(--oc-text); }
 .oc-result-title em { font-style: normal; color: var(--primary); }
-.oc-result-title b { font-weight: 600; }
+.oc-result-title b { font-weight: 500; }
 
 .oc-view-toggle { display: inline-flex; gap: 8px; flex: 0 0 auto; }
 .oc-view-toggle button {
@@ -380,11 +382,11 @@
   border-radius: 8px;
   background: #fff;
   color: var(--oc-muted);
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 .oc-view-toggle button svg { width: 16px; height: 16px; }
-.oc-view-toggle button.active { border-color: var(--primary); color: var(--primary); font-weight: 500; }
+.oc-view-toggle button.active { border-color: var(--primary); color: var(--primary); font-weight: 400; }
 
 /* ===== 결과 본문 (지도 보기 = 2열) ===== */
 .oc-result-body { display: grid; gap: 24px; align-items: start; }
@@ -394,7 +396,7 @@
 
 /* 리스트 */
 .oc-list { display: flex; flex-direction: column; gap: 8px; }
-.oc-result-body[data-view="map"] .oc-list { max-height: 800px; overflow-y: auto; padding-right: 4px; }
+.oc-result-body[data-view="map"] .oc-list { max-height: calc(100vh - 48px); overflow-y: auto; padding-right: 4px; }
 .oc-result-body[data-view="list"] .oc-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -406,8 +408,8 @@
   display: flex;
   min-width: 0;
   gap: 14px;
-  min-height: 125px;
-  padding: 12px;
+  min-height: 150px;
+  padding: 14px;
   border: 1px solid var(--oc-border);
   border-radius: 9px;
   background: #fff;
@@ -419,8 +421,10 @@
 
 .oc-card-thumb {
   flex: 0 0 auto;
+  align-self: stretch;
   width: 150px;
-  height: 100px;
+  height: auto;
+  min-height: 100px;
   border-radius: 8px;
   object-fit: cover;
   background: #f3ece4;
@@ -430,12 +434,14 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  align-self: stretch;
   width: 150px;
-  height: 100px;
+  height: auto;
+  min-height: 100px;
   border-radius: 8px;
   background: #f3ece4;
   color: #b6a895;
-  font-size: 12px;
+  font-size: 15px;
 }
 .oc-card-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
 .oc-card-badge {
@@ -445,19 +451,21 @@
   border-radius: 999px;
   background: var(--primary-light);
   color: var(--primary-dark);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
 }
 .oc-card-title {
   margin: 0 0 7px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
   color: var(--oc-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
-.oc-card-meta { margin: 0; color: var(--oc-muted); font-size: 12.5px; line-height: 1.7; }
+.oc-card-meta { margin: 0; color: var(--oc-muted); font-size: 15px; line-height: 1.7; }
 .oc-card-meta span { display: inline-flex; align-items: center; gap: 4px; }
 .oc-card-meta svg { width: 13px; height: 13px; color: #b8a89a; }
 
@@ -479,9 +487,9 @@
 }
 .oc-fav svg { width: 22px; height: 22px; }
 .oc-fav.is-fav { color: #ff5a6e; }
-.oc-card-trans { color: var(--primary); font-size: 13px; font-weight: 500; line-height: 1.5; }
-.oc-card-dist { color: var(--oc-muted); font-size: 12px; }
-.oc-card-price { margin-top: 4px; color: var(--oc-text); font-size: 16px; font-weight: 600; }
+.oc-card-trans { color: var(--primary); font-size: 15px; font-weight: 400; line-height: 1.5; }
+.oc-card-dist { color: var(--oc-muted); font-size: 15px; }
+.oc-card-price { margin-top: 4px; color: var(--oc-text); font-size: 16px; font-weight: 500; }
 
 /* 리스트 보기 = 세로 카드 */
 .oc-result-body[data-view="list"] .oc-card { flex-direction: column; padding: 0; gap: 0; overflow: hidden; min-height: 0; }
@@ -510,7 +518,7 @@
 }
 .oc-empty svg { width: 40px; height: 40px; color: #d8cdc2; }
 .oc-empty strong { font-size: 16px; color: var(--oc-text); }
-.oc-empty p { margin: 0; color: var(--oc-muted); font-size: 13px; }
+.oc-empty p { margin: 0; color: var(--oc-muted); font-size: 15px; }
 .oc-empty button {
   margin-top: 6px;
   height: 42px;
@@ -519,7 +527,7 @@
   border-radius: 8px;
   background: #fff;
   color: var(--primary);
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 .oc-empty button:hover { background: var(--primary-light); }
@@ -528,7 +536,8 @@
 .oc-map-pane { position: sticky; top: 24px; }
 .oc-map {
   position: relative;
-  aspect-ratio: 1145 / 1374;
+  height: calc(100vh - 48px);
+  min-height: 460px;
   border: 1px solid var(--oc-border);
   border-radius: 10px;
   overflow: hidden;
@@ -587,8 +596,8 @@
   border-radius: 50%;
   background: rgba(242, 122, 26, 0.92);
   color: #fff;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   border: 3px solid rgba(255,255,255,0.85);
   transform: translate(-50%, -50%);
   box-shadow: 0 5px 14px rgba(242, 122, 26, 0.4);
@@ -601,7 +610,7 @@
   padding: 6px 13px 6px 9px;
   border-radius: 999px;
   background: #2b2520; color: #fff;
-  font-size: 12px; font-weight: 500;
+  font-size: 15px; font-weight: 400;
   transform: translate(-50%, -50%);
   white-space: nowrap;
   box-shadow: 0 6px 16px rgba(0,0,0,0.25);
@@ -620,7 +629,7 @@
   border-radius: 999px;
   background: #fff;
   color: var(--oc-text);
-  font-size: 13px; font-weight: 500;
+  font-size: 15px; font-weight: 400;
   cursor: pointer;
   transform: translateX(-50%);
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
@@ -643,7 +652,7 @@
   border-radius: 9px;
   background: rgba(255,255,255,0.94);
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  font-size: 12px; color: var(--oc-muted);
+  font-size: 15px; color: var(--oc-muted);
 }
 .oc-legend span { display: inline-flex; align-items: center; gap: 5px; }
 .oc-legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
@@ -672,10 +681,10 @@
   width: 100%; height: 44px;
   border: 1px solid var(--oc-border);
   border-radius: 8px;
-  background: #fff; font-size: 14px; cursor: pointer;
+  background: #fff; font-size: 15px; cursor: pointer;
 }
 .oc-loc-list button:hover { border-color: var(--primary); color: var(--primary); }
-.oc-loc-list button.current { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); font-weight: 500; }
+.oc-loc-list button.current { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); font-weight: 400; }
 
 /* ===== 토스트 ===== */
 .oc-toast {
@@ -686,7 +695,7 @@
   border-radius: 999px;
   background: rgba(43, 37, 32, 0.94);
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
   transform: translateX(-50%) translateY(12px);
   opacity: 0;
   transition: opacity .25s ease, transform .25s ease;
@@ -725,8 +734,8 @@
 }
 .oc-pager-btn:hover { border-color: var(--primary); color: var(--primary); }
 .oc-pager-btn svg { width: 18px; height: 18px; }
-.oc-pager-info { font-size: 14px; color: var(--oc-muted); }
-.oc-pager-info b { color: var(--primary); font-weight: 600; }
+.oc-pager-info { font-size: 15px; color: var(--oc-muted); }
+.oc-pager-info b { color: var(--primary); font-weight: 500; }
 
 /* ============================================================
    반응형 (Responsive) — 오프라인 클래스 서브페이지
@@ -772,7 +781,7 @@
   /* 히어로 콘텐츠 상단 정렬 + 헤더와 충분히 떨어지게 상단 여백 확보 */
   .oc-hero { min-height: 300px; padding-top: 104px; align-items: flex-start; }
   .oc-hero-text h1 { font-size: clamp(26px, 7vw, 36px); }
-  .oc-hero-text p { font-size: 14px; margin-top: 10px; }
+  .oc-hero-text p { font-size: 15px; margin-top: 10px; }
 
   .oc-filter-card { padding: 16px; }
   .oc-location { flex-direction: column; gap: 6px; }
@@ -805,14 +814,14 @@
   .oc-result-body[data-view="list"] .oc-card-thumb,
   .oc-result-body[data-view="list"] .oc-thumb-empty { height: 80px; }
   .oc-result-body[data-view="list"] .oc-card-body { padding: 8px; }
-  .oc-result-body[data-view="list"] .oc-card-badge { font-size: 9px; padding: 2px 6px; margin-bottom: 4px; }
-  .oc-result-body[data-view="list"] .oc-card-title { font-size: 12px; line-height: 1.3; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 6px; }
+  .oc-result-body[data-view="list"] .oc-card-badge { font-size: 15px; padding: 2px 6px; margin-bottom: 4px; }
+  .oc-result-body[data-view="list"] .oc-card-title { font-size: 15px; line-height: 1.3; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 6px; }
   .oc-result-body[data-view="list"] .oc-card-meta { display: none; }       /* 공방·일정: 좁은 그리드에서 숨김 */
   .oc-result-body[data-view="list"] .oc-card-side { flex-direction: column; align-items: flex-start; padding: 0 8px 8px; gap: 0; }
   .oc-result-body[data-view="list"] .oc-fav,
   .oc-result-body[data-view="list"] .oc-card-trans,
   .oc-result-body[data-view="list"] .oc-card-dist { display: none; }       /* 찜·이동수단·거리: 숨김 */
-  .oc-result-body[data-view="list"] .oc-card-price { font-size: 13px; }
+  .oc-result-body[data-view="list"] .oc-card-price { font-size: 15px; }
 
   /* 드롭다운이 화면 밖으로 안 나가도록 */
   .oc-dropdown { min-width: 0; width: max(220px, 72vw); max-width: calc(100vw - 32px); }

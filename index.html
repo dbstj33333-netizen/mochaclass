@@ -19,9 +19,9 @@
       </button>
       <ul class="nav-menu">
         <li class="nav-item">
-          <a href="#service">서비스 소개</a>
+          <a href="about.html">서비스 소개</a>
           <ul class="sub-menu">
-            <li><a href="#service">모카클래스 소개</a></li>
+            <li><a href="about.html">모카클래스 소개</a></li>
             <li><a href="#">이용 가이드</a></li>
             <li><a href="#">자주 묻는 질문</a></li>
           </ul>
@@ -31,6 +31,7 @@
           <ul class="sub-menu">
             <li><a href="offline-class.html">오프라인 클래스</a></li>
             <li><a href="#">라이브 클래스</a></li>
+            <li><a href="reviews.html">클래스 후기</a></li>
           </ul>
         </li>
         <li class="nav-item"><a href="#group">단체클래스</a></li>
@@ -41,7 +42,7 @@
             <li><a href="#">제휴 문의</a></li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-mypage" hidden>
           <a href="#">마이페이지</a>
           <ul class="sub-menu">
             <li><a href="#">신청 내역</a></li>
@@ -51,8 +52,9 @@
         </li>
       </ul>
       <div class="nav-actions">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
+        <a class="nav-login" href="#">로그인</a>
+        <a class="nav-signup" href="#">회원가입</a>
+        <a class="nav-logout" href="#" hidden>로그아웃</a>
         <button class="search-button" type="button" aria-label="검색"></button>
       </div>
     </nav>
@@ -134,11 +136,14 @@
         <div class="line-deco deco-right"></div>
         <div class="popular-arrows" aria-hidden="true"><span></span><span></span></div>
         <div class="dot-deco" aria-hidden="true"></div>
+        <div class="class-carousel">
+        <div class="class-track" id="classTrack">
+        <div class="class-page">
         <div class="class-grid">
           <article class="class-card">
             <img src="images/sec1_img1.png" alt="컵케이크 데코레이션 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>77</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>77</b></div>
               <h3>컵케이크 데코레이션 클래스</h3>
               <div class="price"><del>57,000원</del><strong><small>5%</small> 53,150원</strong></div>
             </div>
@@ -146,7 +151,7 @@
           <article class="class-card">
             <img src="images/sec1_img2.png" alt="도자기 핸드빌딩 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>80</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>80</b></div>
               <h3>도자기 핸드빌딩 클래스</h3>
               <div class="price"><del>67,000원</del><strong><small>5%</small> 63,650원</strong></div>
             </div>
@@ -154,7 +159,7 @@
           <article class="class-card">
             <img src="images/sec1_img3.png" alt="플라워 정기 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em>★ 5.0</em><b>60</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>60</b></div>
               <h3>플라워 정기 클래스</h3>
               <div class="price"><del>40,000원</del><strong><small>5%</small> 38,000원</strong></div>
             </div>
@@ -162,7 +167,7 @@
           <article class="class-card">
             <img src="images/sec1_img4.png" alt="가죽지갑 만들기 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>85</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>85</b></div>
               <h3>가죽지갑 만들기 클래스</h3>
               <div class="price"><del>77,000원</del><strong><small>15%</small> 65,450원</strong></div>
             </div>
@@ -170,7 +175,7 @@
           <article class="class-card">
             <img src="images/sec1_img5.png" alt="아로마 향초 원데이 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em>★ 5.0</em><b>98</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>원데이</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>98</b></div>
               <h3>아로마 향초 원데이 클래스</h3>
               <div class="price"><del>57,000원</del><strong><small>10%</small> 51,300원</strong></div>
             </div>
@@ -178,16 +183,19 @@
           <article class="class-card">
             <img src="images/sec1_img6.png" alt="드로잉 정기 클래스">
             <div class="card-body">
-              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em>★ 5.0</em><b>68</b></div>
+              <div class="tag-row"><span>핸드메이드</span><span>정기</span><em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>68</b></div>
               <h3>드로잉 정기 클래스</h3>
               <div class="price"><del>57,000원</del><strong><small>5%</small> 53,150원</strong></div>
             </div>
           </article>
         </div>
+        </div>
+        </div>
+        </div>
       </div>
 
-      <div class="slider-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
-      <a class="outline-button" href="#">클래스 모두 보기</a>
+      <div class="slider-dots" aria-label="인기 클래스 페이지"><span class="active"></span><span></span><span></span></div>
+      <a class="outline-button" href="offline-class.html">클래스 모두 보기</a>
     </section>
 
     <section class="group-banner section-gap" id="group">
@@ -211,21 +219,21 @@
         <article class="review-card">
           <img src="images/sec3_img1.png" alt="가죽지갑 만들기 체험">
           <div>
-            <h3>가죽지갑 만들기 체험 <span>★ 5.0</span></h3>
+            <h3>가죽지갑 만들기 체험 <span><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</span></h3>
             <p>직접 고른 가죽으로 지갑을 만들었어요! 처음 참여해도 차근차근 따라갈 수 있어 만족도가 높아요.</p>
           </div>
         </article>
         <article class="review-card">
           <img src="images/sec3_img2.png" alt="소형화 클래스 후기">
           <div>
-            <h3>소형화 클래스 후기 <span>★ 5.0</span></h3>
+            <h3>소형화 클래스 후기 <span><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</span></h3>
             <p>그림이 처음이어도 부담 없이 즐길 수 있었어요. 완성된 작품을 보니 성취감도 더 특별한 시간이었습니다.</p>
           </div>
         </article>
         <article class="review-card">
           <img src="images/sec3_img3.png" alt="자개 클래스">
           <div>
-            <h3>빛을 품은 조각 모음 자개 클래스 <span>★ 5.0</span></h3>
+            <h3>빛을 품은 조각 모음 자개 클래스 <span><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</span></h3>
             <p>초롱초롱 빛나는 섬세한 자개가 수업 내내 예뻤어요. 작은 조각을 하나씩 붙이며 마음까지 차분해졌습니다.</p>
           </div>
         </article>
@@ -245,7 +253,7 @@
           <li><a href="#">이용약관</a></li>
           <li><a href="#">개인정보처리방침</a></li>
           <li><a href="#">사업자정보확인</a></li>
-          <li><a href="#">서비스소개</a></li>
+          <li><a href="about.html">서비스소개</a></li>
         </ul>
         <p>주식회사 모카클래스 | 대표 정윤지 | 사업자등록번호 285-81-02564 | 통신판매업 2021-서울강남-0652</p>
         <p>주소 서울특별시 강남구 봉은사로 509 | Tel 070-7576-1572 | Email hello@mochaclass.com</p>
@@ -253,6 +261,12 @@
       <a class="footer-button" href="#">고객센터 문의하기</a>
     </div>
   </footer>
+
+  <button class="to-top" type="button" aria-label="맨 위로 이동">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  </button>
+
+  <script src="js/class-data.js"></script>
   <script>
     const categoryTabs = document.querySelector('.category-tabs');
 
@@ -292,6 +306,95 @@
       });
     }
 
+    // 인기 클래스 카루셀 (페이지 슬라이드: 1페이지=사랑받는 클래스, 이후=서브페이지 클래스)
+    const classTrack = document.getElementById('classTrack');
+    const dotsWrap = document.querySelector('.slider-dots');
+    const arrowBtns = document.querySelectorAll('.category-arrows button');
+    if (classTrack && dotsWrap) {
+      // 서브페이지(class-data.js) 클래스를 6개씩 다음 페이지로 추가
+      if (typeof classData !== 'undefined' && Array.isArray(classData)) {
+        const cardHTML = (c) =>
+          '<article class="class-card">' +
+            '<img src="' + c.image + '" alt="' + c.title + '">' +
+            '<div class="card-body">' +
+              '<div class="tag-row"><span>' + c.category + '</span><span>' + c.classFormat + '</span>' +
+                '<em><img class="star-ico" src="images/star_icon.png" alt="별점">5.0</em><b>' + c.popularity + '</b></div>' +
+              '<h3>' + c.title + '</h3>' +
+              '<div class="price"><strong>' + c.price.toLocaleString('ko-KR') + '원</strong></div>' +
+            '</div>' +
+          '</article>';
+        for (let i = 0; i < classData.length; i += 6) {
+          const page = document.createElement('div');
+          page.className = 'class-page';
+          page.innerHTML = '<div class="class-grid">' + classData.slice(i, i + 6).map(cardHTML).join('') + '</div>';
+          classTrack.appendChild(page);
+        }
+      }
+
+      // 무한 루프용: 첫 페이지 복제본을 맨 뒤에 추가 (마지막 → 첫 화면도 계속 우측으로 슬라이드)
+      const realCount = classTrack.children.length;
+      classTrack.appendChild(classTrack.children[0].cloneNode(true));
+
+      let idx = 0;
+      let animating = false;
+      const setX = (anim) => {
+        classTrack.style.transition = anim ? '' : 'none';
+        classTrack.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      };
+      const syncDots = () => {
+        const active = ((idx % realCount) + realCount) % realCount;
+        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === active));
+      };
+
+      // 점(dots) 생성 (실제 페이지 수 기준)
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < realCount; i++) {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => {
+          if (animating || i === ((idx % realCount) + realCount) % realCount) return;
+          idx = i; animating = true; setX(true); syncDots();
+        });
+        dotsWrap.appendChild(dot);
+      }
+
+      const goNext = () => {
+        if (animating) return;
+        animating = true;
+        idx++;                          // 마지막 다음엔 복제본(첫 화면)으로 계속 우측 이동
+        setX(true);
+        syncDots();
+      };
+      const goPrev = () => {
+        if (animating) return;
+        animating = true;
+        if (idx === 0) {                // 첫 화면에서 이전 → 복제본 위치로 순간이동 후 좌측 이동
+          idx = realCount;
+          setX(false);
+          void classTrack.offsetWidth;  // 리플로우 강제
+          idx = realCount - 1;
+          setX(true);
+        } else {
+          idx--;
+          setX(true);
+        }
+        syncDots();
+      };
+
+      classTrack.addEventListener('transitionend', () => {
+        animating = false;
+        if (idx >= realCount) {         // 복제본 도달 → 진짜 첫 페이지로 순간 리셋(무한 우측 루프)
+          idx = 0;
+          setX(false);
+        }
+      });
+
+      const [prevBtn, nextBtn] = arrowBtns;
+      if (prevBtn) prevBtn.addEventListener('click', goPrev);
+      if (nextBtn) nextBtn.addEventListener('click', goNext);
+      setX(false);
+      syncDots();
+    }
+
     // 모바일 햄버거: 네비게이션 펼치기/접기
     const menuToggle = document.querySelector('.menu-toggle');
     const navShell = document.querySelector('.nav-shell');
@@ -311,6 +414,41 @@
         navMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
       }
     }
+
+    // 스크롤 시 섹션 등장 애니메이션 (히어로 제외, 그룹 내 순차 지연)
+    const revealGroups = [
+      '.quick-item',
+      '.popular .section-title', '.category-row', '.slider-dots', '.popular .outline-button',
+      '.group-content', '.group-banner img',
+      '.reviews .section-title', '.review-card', '.reviews .outline-button'
+    ];
+    const revealEls = [];
+    revealGroups.forEach((sel) => {
+      const nodes = Array.from(document.querySelectorAll(sel));
+      // 같은 줄(offsetTop 동일)은 같은 지연값 → 한 번에 떠오르고, 아랫줄은 순차로
+      const rowKey = (el) => Math.round(el.offsetTop / 6);
+      const rows = [...new Set(nodes.map(rowKey))].sort((a, b) => a - b);
+      nodes.forEach((el) => {
+        el.classList.add('reveal');
+        const rowIdx = rows.indexOf(rowKey(el));
+        el.style.transitionDelay = `${Math.min(rowIdx, 5) * 90}ms`;
+        revealEls.push(el);
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            revealIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      revealEls.forEach((el) => revealIO.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('is-revealed'));
+    }
   </script>
+  <script src="js/common.js"></script>
 </body>
 </html>
