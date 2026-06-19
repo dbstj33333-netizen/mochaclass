@@ -126,8 +126,8 @@
           <button type="button">데이트 코스</button>
         </div>
         <div class="category-arrows" aria-label="클래스 목록 이동">
-          <button type="button" aria-label="이전 클래스"><img src="images/left_btn.png" alt=""></button>
-          <button type="button" aria-label="다음 클래스"><img src="images/right_btn.png" alt=""></button>
+          <button type="button" data-carousel-prev aria-label="이전 클래스 페이지" aria-controls="classTrack"><img src="images/left_btn.png" alt=""></button>
+          <button type="button" data-carousel-next aria-label="다음 클래스 페이지" aria-controls="classTrack"><img src="images/right_btn.png" alt=""></button>
         </div>
       </div>
 
@@ -137,9 +137,9 @@
         <div class="popular-arrows" aria-hidden="true"><span></span><span></span></div>
         <div class="dot-deco" aria-hidden="true"></div>
         <div class="class-carousel">
-        <div class="class-track" id="classTrack">
-        <div class="class-page">
-        <div class="class-grid">
+          <div class="class-track" id="classTrack" aria-live="polite">
+            <div class="class-page" role="group" aria-label="1번째 클래스 페이지">
+              <div class="class-grid">
           <article class="class-card">
             <img src="images/sec1_img1.png" alt="컵케이크 데코레이션 클래스">
             <div class="card-body">
@@ -188,13 +188,13 @@
               <div class="price"><del>57,000원</del><strong><small>5%</small> 53,150원</strong></div>
             </div>
           </article>
-        </div>
-        </div>
-        </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="slider-dots" aria-label="인기 클래스 페이지"><span class="active"></span><span></span><span></span></div>
+      <div class="slider-dots" aria-label="인기 클래스 페이지"></div>
       <a class="outline-button" href="offline-class.html">클래스 모두 보기</a>
     </section>
 
@@ -309,7 +309,8 @@
     // 인기 클래스 카루셀 (페이지 슬라이드: 1페이지=사랑받는 클래스, 이후=서브페이지 클래스)
     const classTrack = document.getElementById('classTrack');
     const dotsWrap = document.querySelector('.slider-dots');
-    const arrowBtns = document.querySelectorAll('.category-arrows button');
+    const prevBtn = document.querySelector('[data-carousel-prev]');
+    const nextBtn = document.querySelector('[data-carousel-next]');
     if (classTrack && dotsWrap) {
       // 서브페이지(class-data.js) 클래스를 6개씩 다음 페이지로 추가
       if (typeof classData !== 'undefined' && Array.isArray(classData)) {
@@ -326,6 +327,8 @@
         for (let i = 0; i < classData.length; i += 6) {
           const page = document.createElement('div');
           page.className = 'class-page';
+          page.setAttribute('role', 'group');
+          page.setAttribute('aria-label', (classTrack.children.length + 1) + '번째 클래스 페이지');
           page.innerHTML = '<div class="class-grid">' + classData.slice(i, i + 6).map(cardHTML).join('') + '</div>';
           classTrack.appendChild(page);
         }
@@ -343,13 +346,19 @@
       };
       const syncDots = () => {
         const active = ((idx % realCount) + realCount) % realCount;
-        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === active));
+        Array.from(dotsWrap.children).forEach((dot, i) => {
+          const isActive = i === active;
+          dot.classList.toggle('active', isActive);
+          dot.setAttribute('aria-current', isActive ? 'page' : 'false');
+        });
       };
 
       // 점(dots) 생성 (실제 페이지 수 기준)
       dotsWrap.innerHTML = '';
       for (let i = 0; i < realCount; i++) {
-        const dot = document.createElement('span');
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', (i + 1) + '번째 클래스 페이지로 이동');
         dot.addEventListener('click', () => {
           if (animating || i === ((idx % realCount) + realCount) % realCount) return;
           idx = i; animating = true; setX(true); syncDots();
@@ -380,7 +389,8 @@
         syncDots();
       };
 
-      classTrack.addEventListener('transitionend', () => {
+      classTrack.addEventListener('transitionend', (event) => {
+        if (event.target !== classTrack || event.propertyName !== 'transform') return;
         animating = false;
         if (idx >= realCount) {         // 복제본 도달 → 진짜 첫 페이지로 순간 리셋(무한 우측 루프)
           idx = 0;
@@ -388,7 +398,6 @@
         }
       });
 
-      const [prevBtn, nextBtn] = arrowBtns;
       if (prevBtn) prevBtn.addEventListener('click', goPrev);
       if (nextBtn) nextBtn.addEventListener('click', goNext);
       setX(false);
