@@ -17,6 +17,8 @@
         <span></span>
         <span></span>
       </button>
+      <div class="nav-drawer">
+      <div class="nav-drawer-inner">
       <ul class="nav-menu">
         <li class="nav-item">
           <a href="about.html">서비스 소개</a>
@@ -56,6 +58,8 @@
         <a class="nav-signup" href="#">회원가입</a>
         <a class="nav-logout" href="#" hidden>로그아웃</a>
         <button class="search-button" type="button" aria-label="검색"></button>
+      </div>
+      </div>
       </div>
     </nav>
   </header>
@@ -116,14 +120,20 @@
       </div>
 
       <div class="category-row">
-        <div class="category-tabs" aria-label="인기 클래스 카테고리">
-          <button class="active" type="button">단체·모임</button>
-          <button type="button">베이킹·푸드</button>
-          <button type="button">공예·소품</button>
-          <button type="button">아트·드로잉</button>
-          <button type="button">향기·뷰티</button>
-          <button type="button">액티비티·스포츠</button>
-          <button type="button">데이트 코스</button>
+        <div class="category-filter">
+          <button class="category-filter-toggle" type="button" aria-expanded="false" aria-controls="categoryTabs">
+            <span class="category-filter-label">단체·모임</span>
+            <svg class="category-filter-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="category-tabs" id="categoryTabs" aria-label="인기 클래스 카테고리">
+            <button class="active" type="button">단체·모임</button>
+            <button type="button">베이킹·푸드</button>
+            <button type="button">공예·소품</button>
+            <button type="button">아트·드로잉</button>
+            <button type="button">향기·뷰티</button>
+            <button type="button">액티비티·스포츠</button>
+            <button type="button">데이트 코스</button>
+          </div>
         </div>
         <div class="category-arrows" aria-label="클래스 목록 이동">
           <button type="button" data-carousel-prev aria-label="이전 클래스 페이지" aria-controls="classTrack"><img src="images/left_btn.png" alt=""></button>
@@ -272,6 +282,15 @@
 
     if (categoryTabs) {
       const categoryButtons = Array.from(categoryTabs.querySelectorAll('button'));
+      const categoryFilter = document.querySelector('.category-filter');
+      const filterToggle = document.querySelector('.category-filter-toggle');
+      const filterLabel = document.querySelector('.category-filter-label');
+
+      const closeFilter = () => {
+        if (!categoryFilter) return;
+        categoryFilter.classList.remove('is-open');
+        if (filterToggle) filterToggle.setAttribute('aria-expanded', 'false');
+      };
 
       const moveCategoryPill = (button) => {
         const styles = getComputedStyle(categoryTabs);
@@ -293,12 +312,26 @@
           item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
         moveCategoryPill(button);
+        if (filterLabel) filterLabel.textContent = button.textContent;
+        closeFilter();
       };
 
       categoryButtons.forEach((button) => {
         button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
         button.addEventListener('click', () => setActiveCategory(button));
       });
+
+      // 모바일: 버튼형 드롭다운 필터 펼치기/접기
+      if (filterToggle && categoryFilter) {
+        filterToggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const open = categoryFilter.classList.toggle('is-open');
+          filterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        document.addEventListener('click', (event) => {
+          if (!categoryFilter.contains(event.target)) closeFilter();
+        });
+      }
 
       moveCategoryPill(categoryTabs.querySelector('.active') || categoryButtons[0]);
       window.addEventListener('resize', () => {

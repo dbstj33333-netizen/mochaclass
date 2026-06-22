@@ -50,4 +50,32 @@
   });
 
   applyAuth();
+
+  /* ===== 햄버거 드로어: 딤 배경/바깥 영역 클릭 시 닫기 (전 페이지 공용) ===== */
+  var navShell = document.querySelector('.nav-shell');
+  var menuToggle = document.querySelector('.menu-toggle');
+  if (navShell && menuToggle) {
+    document.addEventListener('click', function (e) {
+      if (!navShell.classList.contains('is-nav-open')) return;
+      if (e.target.closest('.nav-drawer') || e.target.closest('.menu-toggle')) return;
+      navShell.classList.remove('is-nav-open');
+      menuToggle.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  /* ===== 드로어(모바일·태블릿): 1차 카테고리 클릭 → 2차 서브메뉴 아코디언 펼침 =====
+     캡처 단계로 등록해 페이지별 '링크 클릭 시 드로어 닫기'보다 먼저 가로채서
+     이동/닫힘을 막고 서브메뉴만 토글한다. */
+  document.addEventListener('click', function (e) {
+    if (!window.matchMedia('(max-width: 1279px)').matches) return;   // 데스크톱은 호버 드롭다운 유지
+    var link = e.target.closest('.nav-menu .nav-item > a');
+    if (!link) return;
+    var item = link.parentElement;
+    if (!item || !item.classList.contains('nav-item')) return;
+    if (!item.querySelector(':scope > .sub-menu')) return;           // 2차 메뉴 없는 항목은 일반 링크
+    e.preventDefault();
+    e.stopPropagation();
+    item.classList.toggle('is-open');
+  }, true);
 })();

@@ -18,6 +18,8 @@
         <span></span>
         <span></span>
       </button>
+      <div class="nav-drawer">
+      <div class="nav-drawer-inner">
       <ul class="nav-menu">
         <li class="nav-item">
           <a href="about.html">서비스 소개</a>
@@ -57,6 +59,8 @@
         <a class="nav-signup" href="#">회원가입</a>
         <a class="nav-logout" href="#" hidden>로그아웃</a>
         <button class="search-button" type="button" aria-label="검색"></button>
+      </div>
+      </div>
       </div>
     </nav>
   </header>
@@ -245,6 +249,26 @@
 
   <script src="js/class-data.js"></script>
   <script src="js/offline-class.js"></script>
+  <script>
+    // 모바일·태블릿 햄버거: 네비게이션 펼치기/접기
+    (function () {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navShell = document.querySelector('.nav-shell');
+      const navMenu = document.querySelector('.nav-menu');
+      if (!menuToggle || !navShell) return;
+      const closeNav = () => {
+        navShell.classList.remove('is-nav-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      };
+      menuToggle.addEventListener('click', () => {
+        const open = navShell.classList.toggle('is-nav-open');
+        menuToggle.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      if (navMenu) navMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
+    })();
+  </script>
   <script src="js/common.js"></script>
 </body>
 </html>

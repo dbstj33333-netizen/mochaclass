@@ -47,6 +47,15 @@
 .rv-page .sub-menu a { -webkit-text-fill-color: transparent; }
 .rv-page .search-button { filter: brightness(0) invert(1); }
 .rv-page .menu-toggle span { background: #ffffff; }
+/* 태블릿·모바일 햄버거 펼침(크림 배경) 시 메뉴 글씨·아이콘을 어둡게 → 가독성 확보 */
+.rv-page .nav-shell.is-nav-open { background: rgba(255, 250, 243, 0.98); }
+.rv-page .nav-shell.is-nav-open .nav-item > a,
+.rv-page .nav-shell.is-nav-open .nav-actions a {
+  color: #2c2622;
+  -webkit-text-fill-color: #2c2622;
+}
+.rv-page .nav-shell.is-nav-open .menu-toggle span { background: #2c2622; }
+.rv-page .nav-shell.is-nav-open .search-button { filter: none; }
 
 /* ===== 공통 타이포 ===== */
 .rv-eyebrow {
@@ -103,7 +112,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 492px;
+  min-height: 452px;
   padding: 24px;
   overflow: hidden;
   text-align: center;
@@ -222,8 +231,13 @@
   .rv-section { padding: 84px 0; }
 }
 
+/* 모바일 좌우 여백 20px 통일 */
+@media (max-width: 767px) {
+  .rv-wrap { width: calc(100% - 40px); }
+}
+
 @media (max-width: 680px) {
-  .rv-hero { padding: 24px 22px; }
+  .rv-hero { padding: 24px 20px; }
   .rv-hero-title { font-size: 34px; }
   .rv-hero-sub { font-size: 15px; }
   .rv-h2 { font-size: 27px; }
