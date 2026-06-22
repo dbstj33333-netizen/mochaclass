@@ -1021,10 +1021,11 @@ section > .outline-button,
   position: absolute;
   top: 0;
   right: 0;
-  width: min(1094px, 57vw);
-  height: 522px;
-  object-fit: contain;
-  object-position: right top;
+  bottom: 0;
+  width: min(1094px, 56vw);
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .reviews {
@@ -1219,7 +1220,7 @@ section > .outline-button,
     background: #fffaf3;
     transform: translateX(100%);
     transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
-    overflow-y: auto; overscroll-behavior: contain;
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
   }
   .nav-shell.is-nav-open .nav-drawer { pointer-events: auto; }
   .nav-shell.is-nav-open .nav-drawer-inner { transform: translateX(0); }
@@ -1234,8 +1235,14 @@ section > .outline-button,
   /* 드로어 내부 메뉴·로그인 세로 정렬 */
   .nav-menu { display: flex; flex-direction: column; align-items: stretch; gap: 0; width: 100%; font-size: 18px; }
   .nav-actions { display: flex; justify-content: flex-start; align-items: center; gap: 22px; width: 100%; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
-  /* 드로어: 1차 카테고리 클릭 → 2차 서브메뉴가 아래로 펼쳐지는 아코디언 */
-  .nav-menu .nav-item { flex-direction: column; align-items: stretch; min-height: 0; }
+  /* 드로어: 1차 카테고리 클릭 → 2차 서브메뉴가 아래로 펼쳐지는 아코디언
+     grid-template-rows 0fr→1fr 기법: 내용 높이에 자동으로 맞춰 항목이 절대 잘리지 않음 */
+  .nav-menu .nav-item {
+    display: grid; grid-template-rows: auto 0fr; align-items: start; min-height: 0;
+    margin-bottom: 2px;
+    transition: grid-template-rows .42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nav-menu .nav-item.is-open { grid-template-rows: auto 1fr; }
   .nav-menu .nav-item > a {
     display: flex; align-items: center; min-height: 52px;
     background: none; color: var(--black); -webkit-text-fill-color: currentColor;
@@ -1247,22 +1254,18 @@ section > .outline-button,
     transform: rotate(45deg); transition: transform .25s ease; opacity: .5;
   }
   .nav-shell .nav-menu .nav-item.is-open > a::after { transform: rotate(-135deg); }
-  /* 2차 메뉴: 기본 접힘 → is-open 시 주황 배경 카드로 부드럽게 펼침 (데스크톱 드롭다운 스타일 리셋) */
+  /* 2차 메뉴: 주황 배경 카드 (grid 0fr 트랙에서 높이 0 → overflow로 숨김, 1fr 에서 내용만큼 펼침) */
   .nav-menu .sub-menu {
     display: block; position: static;
-    max-height: 0; overflow: hidden;
-    margin: 0; padding: 0 10px; min-width: 0;
+    overflow: hidden; min-height: 0; min-width: 0;
+    margin: 0; padding: 6px 10px;
     border: 0; box-shadow: none;
     background: var(--orange); border-radius: 12px;
     -webkit-backdrop-filter: none; backdrop-filter: none;
     opacity: 1; clip-path: none; transform: none; pointer-events: auto;
-    transition: max-height .45s cubic-bezier(0.22, 1, 0.36, 1),
-                padding .45s cubic-bezier(0.22, 1, 0.36, 1),
-                margin .45s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .nav-menu .nav-item.is-open > .sub-menu { max-height: 260px; padding: 6px 10px; margin: 2px 0 10px; }
   .nav-shell .nav-menu .sub-menu a {
-    opacity: 1; transform: none; background: none;
+    display: block; opacity: 1; transform: none; background: none;
     color: #ffffff; -webkit-text-fill-color: #ffffff;
     min-height: 0; padding: 10px 12px; font-size: 15px; border-radius: 8px;
   }
@@ -1593,6 +1596,46 @@ section > .outline-button,
 @media (max-width: 480px) {
   .to-top { width: 46px; height: 46px; }
   .to-top svg { width: 20px; height: 20px; }
+}
+
+/* ===== 클래스 검색 오버레이 (탑네비 돋보기) ===== */
+.mc-search-overlay {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  background: rgba(20, 14, 8, 0.55);
+}
+.mc-search-overlay.is-open { display: block; }
+.mc-search-panel {
+  position: relative;
+  width: min(720px, calc(100% - 32px));
+  margin: 9vh auto 0;
+  max-height: 78vh;
+  display: flex; flex-direction: column;
+  padding: 30px 24px 20px;
+  background: #ffffff; border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+}
+.mc-search-close {
+  position: absolute; top: 10px; right: 12px;
+  width: 40px; height: 40px; padding: 0;
+  border: 0; background: none; color: #999; font-size: 28px; line-height: 1; cursor: pointer;
+}
+.mc-search-form {
+  display: flex; align-items: center; gap: 10px;
+  height: 54px; padding: 0 20px; margin: 4px 0 18px;
+  border: 2px solid var(--orange); border-radius: 999px;
+}
+.mc-search-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 16px; color: #222; }
+.mc-search-results { overflow-y: auto; display: grid; gap: 8px; }
+.mc-search-card { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; }
+.mc-search-card:hover { background: #fff6ec; }
+.mc-search-card img { width: 64px; height: 64px; flex: 0 0 auto; object-fit: cover; border-radius: 8px; }
+.mc-sc-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mc-sc-cat { font-size: 12px; color: var(--orange-dark); }
+.mc-sc-title { font-size: 15px; font-weight: 400; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mc-sc-price { font-size: 14px; font-style: normal; color: #555; }
+.mc-search-empty { text-align: center; color: #999; padding: 36px 0; }
+@media (max-width: 767px) {
+  .mc-search-panel { width: 100%; height: 100%; max-height: 100%; margin: 0; border-radius: 0; padding-top: 56px; }
 }
 
 /* 모션 최소화 환경 존중 */
