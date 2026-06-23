@@ -397,12 +397,12 @@ img {
 }
 
 .primary-button {
-  width: 338px;
-  height: 84px;
+  width: 300px;
+  height: 72px;
   margin-top: 70px;
   color: #ffffff;
   background: var(--orange);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
   box-shadow: 0 18px 30px rgba(245, 130, 31, 0.18);
 }
