@@ -251,7 +251,7 @@
     }
 
     // 스크롤 시 등장 애니메이션 (같은 줄은 한 번에)
-    const revealSelectors = ['.rv-section-head', '.rv-feature', '.rv-card', '.rv-cta-inner'];
+    const revealSelectors = ['.rv-section-head', '.rv-cta-inner'];   /* 후기 카드(.rv-card)는 떠오르는 효과 제외 */
     const revealItems = [];
     revealSelectors.forEach((sel) => {
       const nodes = Array.from(document.querySelectorAll(sel));
