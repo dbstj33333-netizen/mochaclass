@@ -1236,13 +1236,14 @@ section > .outline-button,
   .nav-menu { display: flex; flex-direction: column; align-items: stretch; gap: 0; width: 100%; font-size: 18px; }
   .nav-actions { display: flex; justify-content: flex-start; align-items: center; gap: 22px; width: 100%; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
   /* 드로어: 1차 카테고리 클릭 → 2차 서브메뉴가 아래로 펼쳐지는 아코디언
-     grid-template-rows 0fr→1fr 기법: 내용 높이에 자동으로 맞춰 항목이 절대 잘리지 않음 */
+     1행을 고정 px(52px)로 둬 auto 를 제거 → grid-template-rows 0fr→1fr 이 부드럽게 보간됨
+     (auto 가 섞이면 보간 불가로 즉시 펼쳐져 '덜그럭'거림) */
   .nav-menu .nav-item {
-    display: grid; grid-template-rows: auto 0fr; align-items: stretch; min-height: 0;
+    display: grid; grid-template-rows: 52px 0fr; align-items: stretch; min-height: 0;
     margin-bottom: 2px;
-    transition: grid-template-rows .55s cubic-bezier(0.16, 1, 0.3, 1);  /* 부드럽게 감속하며 펼침 */
+    transition: grid-template-rows .5s cubic-bezier(0.22, 1, 0.36, 1);  /* 부드럽게 슈루룩 */
   }
-  .nav-menu .nav-item.is-open { grid-template-rows: auto 1fr; }
+  .nav-menu .nav-item.is-open { grid-template-rows: 52px 1fr; }
   .nav-menu .nav-item > a {
     display: flex; align-items: center; min-height: 52px;
     background: none; color: var(--black); -webkit-text-fill-color: currentColor;
