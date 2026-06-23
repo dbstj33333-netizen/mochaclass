@@ -117,13 +117,29 @@
     var data = (typeof classData !== 'undefined' && Array.isArray(classData)) ? classData : [];
     var won = function (n) { return Number(n).toLocaleString('ko-KR') + '원'; };
 
+    /* 검색창을 처음 열었을 때(검색어 없음) 노출할 인기 키워드 */
+    var POPULAR_KEYWORDS = ['베이킹', '화과자', '주얼리', '천연석', '금속공예', '칠보', '우드공예', '원데이'];
+
+    var renderPopular = function () {
+      results.innerHTML =
+        '<div class="mc-search-pop">' +
+          '<p class="mc-search-pop-title">인기 키워드</p>' +
+          '<div class="mc-search-pop-list">' +
+            POPULAR_KEYWORDS.map(function (k) {
+              return '<button type="button" class="mc-search-chip" data-kw="' + k + '">' + k + '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>';
+    };
+
     var render = function (q) {
       q = (q || '').trim().toLowerCase();
+      if (!q) { renderPopular(); return; }   // 검색어 없으면 인기 키워드 노출
       if (!data.length) {
         results.innerHTML = '<p class="mc-search-empty">‘클래스 찾기’ 페이지에서 검색해 주세요.</p>';
         return;
       }
-      var list = !q ? data.slice(0, 8) : data.filter(function (c) {
+      var list = data.filter(function (c) {
         return (c.title && c.title.toLowerCase().indexOf(q) > -1) ||
                (c.category && c.category.toLowerCase().indexOf(q) > -1);
       });
@@ -152,6 +168,14 @@
     overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSearch(); });
     overlay.querySelector('.mc-search-form').addEventListener('submit', function (e) { e.preventDefault(); });
     input.addEventListener('input', function () { render(input.value); });
+    /* 인기 키워드 칩 클릭 → 검색어로 입력하고 결과 표시 */
+    results.addEventListener('click', function (e) {
+      var chip = e.target.closest('.mc-search-chip');
+      if (!chip) return;
+      input.value = chip.getAttribute('data-kw');
+      render(input.value);
+      input.focus();
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
   }
 })();
