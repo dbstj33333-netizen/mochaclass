@@ -33,34 +33,34 @@
   font-size: 18px;
 }
 
-/* ===== 헤더 오버라이드 (오렌지 히어로 위 흰색 메뉴) ===== */
+/* ===== 헤더 오버라이드 (밝은 일러스트 히어로 위 어두운 메뉴) ===== */
 .oc-page .nav-shell {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(50, 40, 35, 0.10);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .oc-page .nav-item > a,
 .oc-page .nav-actions a {
-  color: #ffffff;
+  color: var(--oc-text);
   background: none;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--oc-text);
   font-weight: 400;
 }
 
 .oc-page .nav-item.is-current > a {
   font-weight: 400;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--oc-text);
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
 }
 
 .oc-page .nav-item:hover > a,
-.oc-page .nav-actions a:hover { opacity: 0.82; }
+.oc-page .nav-actions a:hover { opacity: 0.7; }
 
 .oc-page .sub-menu a { -webkit-text-fill-color: transparent; }
-.oc-page .search-button { filter: brightness(0) invert(1); }
-.oc-page .menu-toggle span { background: #ffffff; }
+.oc-page .search-button { filter: none; }
+.oc-page .menu-toggle span { background: var(--oc-text); }
 /* 태블릿·모바일 햄버거 펼침(크림 배경) 시 메뉴 글씨·아이콘을 어둡게 → 가독성 확보 */
 .oc-page .nav-shell.is-nav-open { background: rgba(255, 250, 243, 0.98); }
 .oc-page .nav-shell.is-nav-open .nav-item > a,
@@ -76,16 +76,19 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   min-height: 452px;
-  padding: 0 7vw;
   overflow: hidden;
   background: #f7ead9 url("../images/sub1_hero.png") left center / cover no-repeat;
   color: #3d332c;
   text-align: left;
 }
 
-.oc-hero-text { position: relative; z-index: 1; }
+/* 제목을 본문 콘텐츠(필터/목록)와 동일한 컨테이너 폭·정렬로 맞춤 */
+.oc-hero-text {
+  position: relative; z-index: 1;
+  width: min(var(--oc-container), calc(100% - 112px));
+  margin: 0 auto;
+}
 .oc-hero-text h1 { margin: 0; font-size: 50px; font-weight: 500; letter-spacing: 0.5px; }
 .oc-hero-text p { margin: 16px 0 0; font-size: 18px; font-weight: 100; opacity: 0.92; }
 
@@ -744,7 +747,7 @@
 
 /* ===== Tablet : ≤1279px — 좌우 여백 48px, 지도 비율만 조정 ===== */
 @media (max-width: 1279px) {
-  .oc-filter-wrap, .oc-result { width: min(var(--oc-container), calc(100% - 48px)); }
+  .oc-filter-wrap, .oc-result, .oc-hero-text { width: min(var(--oc-container), calc(100% - 48px)); }
   .oc-hero-text h1 { font-size: clamp(34px, 4.4vw, 50px); }   /* 데스크톱 50px 유지 */
   .oc-result-body[data-view="map"] { grid-template-columns: 44% minmax(0, 1fr); }
   /* 섹션 간격(태블릿) */
@@ -770,7 +773,7 @@
 
 /* ===== Mobile : ≤767px — 좌우 여백 20px, 햄버거 색상 보정, 1열 ===== */
 @media (max-width: 767px) {
-  .oc-filter-wrap, .oc-result { width: calc(100% - 40px); }
+  .oc-filter-wrap, .oc-result, .oc-hero-text { width: calc(100% - 40px); }
 
   /* 햄버거 펼침 패널: 오렌지 히어로용 흰색 글씨를 어두운 글씨로 복구 */
   .oc-page .nav-shell.is-nav-open { background: rgba(255, 250, 243, 0.98); }
@@ -856,7 +859,7 @@
 
 /* ===== Small mobile : ≤480px ===== */
 @media (max-width: 480px) {
-  .oc-filter-wrap, .oc-result { width: calc(100% - 40px); }
+  .oc-filter-wrap, .oc-result, .oc-hero-text { width: calc(100% - 40px); }
   /* 소형 모바일에서도 3열 유지 (간격만 축소) */
   .oc-result-body[data-view="list"] .oc-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
   .oc-result-body[data-view="list"] .oc-card-thumb,
