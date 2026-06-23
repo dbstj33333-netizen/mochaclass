@@ -133,23 +133,23 @@
 .rv-stars {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 7px;
+  margin-bottom: 7px;
 }
 .rv-star-ico { display: inline-flex; gap: 3px; }
-.rv-star-ico img { width: 18px; height: 18px; object-fit: contain; display: block; }
-.rv-stars b { color: var(--rv-text); font-size: 16px; font-weight: 600; }
+.rv-star-ico img { width: 15px; height: 15px; object-fit: contain; display: block; }
+.rv-stars b { color: var(--rv-text); font-size: 14px; font-weight: 600; }
 .rv-quote {
   position: relative;
   margin: 0;
-  padding-top: 34px;            /* 위쪽 인용부호 자리 */
+  padding-top: 22px;            /* 위쪽 인용부호 자리 */
   color: var(--rv-muted);
-  line-height: 1.85;
+  line-height: 1.6;
 }
 .rv-quote::before {
   content: "\201C";
-  position: absolute; top: 2px; left: 0;   /* 흐름에서 제외 → 본문 줄 수 제한이 깔끔 */
-  font-size: 46px;
+  position: absolute; top: 0; left: 0;   /* 흐름에서 제외 → 본문 줄 수 제한이 깔끔 */
+  font-size: 30px;
   line-height: 0.6;
   color: rgba(242, 122, 26, 0.28);
 }
@@ -180,23 +180,23 @@
 }
 .rv-card {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  height: 290px;                 /* 모든 후기 카드 동일 높이 */
+  grid-template-columns: 260px 1fr;
+  height: 200px;                 /* 모든 후기 카드 동일 높이 */
   background: var(--rv-surface);
   border: 1px solid var(--rv-border);
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: none;
 }
 .rv-card-img { height: 100%; }
 .rv-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.rv-card-body { padding: 28px 40px; align-self: center; overflow: hidden; }
+.rv-card-body { padding: 20px 30px; align-self: center; overflow: hidden; }
 .rv-card-body h3 {
-  margin: 0 0 4px; font-size: 21px; font-weight: 600; color: var(--rv-text);
+  margin: 0 0 4px; font-size: 18px; font-weight: 600; color: var(--rv-text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;   /* 제목 1줄 */
 }
 .rv-card-body .rv-quote {
-  font-size: 16px;
+  font-size: 14px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;  /* 본문 2줄 */
 }
 
