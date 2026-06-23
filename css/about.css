@@ -31,16 +31,9 @@
   border-color: rgba(50, 40, 35, 0.10);
   background: rgba(255, 255, 255, 0.55);
 }
-.ab-page .nav-item > a,
-.ab-page .nav-actions a {
-  color: var(--ab-text);
-  background: none;
-  -webkit-text-fill-color: var(--ab-text);
-  font-weight: 400;
-}
+/* 네비 글자색·호버는 기본(style.css) 그대로 사용 → 메인과 동일한 좌→우 채움 효과 */
 .ab-page .nav-item.is-current > a {
   font-weight: 400;
-  -webkit-text-fill-color: var(--ab-text);
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
@@ -293,7 +286,7 @@
 @media (max-width: 767px) {
   :root { --ab-gutter: 20px; }
 
-  .ab-hero { min-height: 420px; }
+  .ab-hero { min-height: 360px; }
   .ab-hero-title { font-size: 34px; }
   .ab-eyebrow { font-size: 13px; margin-bottom: 12px; }
   .ab-h2 { font-size: 26px; }

@@ -30,16 +30,9 @@
   border-color: rgba(50, 40, 35, 0.10);
   background: rgba(255, 255, 255, 0.55);
 }
-.rv-page .nav-item > a,
-.rv-page .nav-actions a {
-  color: var(--rv-text);
-  background: none;
-  -webkit-text-fill-color: var(--rv-text);
-  font-weight: 400;
-}
+/* 네비 글자색·호버는 기본(style.css) 그대로 사용 → 메인과 동일한 좌→우 채움 효과 */
 .rv-page .nav-item.is-current > a {
   font-weight: 400;
-  -webkit-text-fill-color: var(--rv-text);
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
@@ -227,10 +220,10 @@
 /* 모바일 좌우 여백 20px 통일 */
 @media (max-width: 767px) {
   .rv-wrap, .rv-hero-inner { width: calc(100% - 40px); }
+  .rv-hero { min-height: 360px; }   /* 모바일 히어로 높이 서브페이지 통일 */
 }
 
 @media (max-width: 680px) {
-  .rv-hero { min-height: 360px; }
   .rv-hero-title { font-size: 34px; }
   .rv-hero-sub { font-size: 15px; }
   .rv-h2 { font-size: 27px; }
