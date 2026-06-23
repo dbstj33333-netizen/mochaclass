@@ -164,7 +164,6 @@
   border: 1px solid var(--rv-border);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: var(--rv-shadow);
 }
 .rv-feature-img { min-height: 340px; }
 .rv-feature-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -173,22 +172,24 @@
 .rv-feature-body .rv-quote { font-size: 17px; }
 
 /* ===== 후기 그리드 ===== */
+/* 후기 카드: 가로가 긴 형식(이미지 좌·본문 우)으로 1열 세로 정렬, 그림자 없음 */
 .rv-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: 1fr;
+  gap: 24px;
 }
 .rv-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 340px 1fr;
   background: var(--rv-surface);
   border: 1px solid var(--rv-border);
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: none;
 }
-.rv-card-img { height: 220px; }
+.rv-card-img { min-height: 240px; }
 .rv-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.rv-card-body { padding: 28px 28px 32px; }
+.rv-card-body { padding: 34px 40px; align-self: center; }
 .rv-card-body h3 { margin: 0 0 14px; font-size: 21px; font-weight: 600; color: var(--rv-text); }
 .rv-card-body .rv-quote { font-size: 16px; }
 
@@ -234,6 +235,10 @@
   .rv-feature-body { padding: 28px 24px 32px; }
   .rv-feature-body h3 { font-size: 22px; }
   .rv-grid { grid-template-columns: 1fr; gap: 22px; }
+  /* 모바일: 후기 카드도 세로(이미지 위)로 전환 */
+  .rv-card { grid-template-columns: 1fr; }
+  .rv-card-img { min-height: 200px; height: 200px; }
+  .rv-card-body { padding: 26px 24px 30px; }
   .rv-cta-inner { flex-direction: column; text-align: center; }
   .rv-cta-btns { justify-content: center; width: 100%; }
   .rv-btn { width: 100%; }
