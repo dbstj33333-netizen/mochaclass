@@ -1604,50 +1604,87 @@ section > .outline-button,
 /* ===== 클래스 검색 오버레이 (탑네비 돋보기) ===== */
 .mc-search-overlay {
   position: fixed; inset: 0; z-index: 120; display: none;
-  background: rgba(20, 14, 8, 0.55);
+  background: rgba(20, 14, 8, 0.5);
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
 }
-.mc-search-overlay.is-open { display: block; }
+.mc-search-overlay.is-open { display: block; animation: mcOverlayFade .22s ease; }
+@keyframes mcOverlayFade { from { opacity: 0; } to { opacity: 1; } }
+
 .mc-search-panel {
   position: relative;
-  width: min(720px, calc(100% - 32px));
-  margin: 9vh auto 0;
-  max-height: 78vh;
+  width: min(900px, calc(100% - 40px));
+  margin: 7vh auto 0;
+  max-height: 82vh;
   display: flex; flex-direction: column;
-  padding: 30px 24px 20px;
-  background: #ffffff; border-radius: 16px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  padding: 34px 36px 30px;
+  background: #ffffff; border-radius: 22px;
+  box-shadow: 0 40px 100px rgba(20, 14, 8, 0.32);
+  animation: mcPanelIn .34s cubic-bezier(0.22, 1, 0.36, 1);
 }
+@keyframes mcPanelIn { from { opacity: 0; transform: translateY(-18px) scale(.985); } to { opacity: 1; transform: none; } }
+
 .mc-search-close {
-  position: absolute; top: 10px; right: 12px;
-  width: 40px; height: 40px; padding: 0;
-  border: 0; background: none; color: #999; font-size: 28px; line-height: 1; cursor: pointer;
+  position: absolute; top: 18px; right: 20px;
+  width: 42px; height: 42px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 999px; background: #f4f1ee; color: #6b6259;
+  font-size: 24px; line-height: 1; cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
 }
+.mc-search-close:hover { background: #ece7e2; color: #2c2622; }
+
+/* 검색바: 돋보기 아이콘 내장, 큼직하게, 포커스 시 주황 테두리 */
 .mc-search-form {
-  display: flex; align-items: center; gap: 10px;
-  height: 54px; padding: 0 20px; margin: 4px 0 18px;
-  border: 2px solid var(--orange); border-radius: 999px;
+  display: flex; align-items: center; gap: 13px;
+  height: 64px; padding: 0 24px; margin: 8px 0 28px;
+  background: #f6f4f2; border: 2px solid transparent; border-radius: 16px;
+  transition: border-color .18s ease, background-color .18s ease;
 }
-.mc-search-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 16px; color: #222; }
-.mc-search-results { overflow-y: auto; display: grid; gap: 8px; }
-.mc-search-card { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; }
+.mc-search-form:focus-within { border-color: var(--orange); background: #ffffff; }
+.mc-search-form::before {
+  content: ""; width: 22px; height: 22px; flex: 0 0 auto;
+  background: url("images/top_icon.png") center / contain no-repeat; opacity: .5;
+}
+.mc-search-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 17px; color: #222; }
+.mc-search-input::placeholder { color: #b3aaa1; }
+
+.mc-search-results { overflow-y: auto; }
+
+/* ===== 인기 검색어 랭킹 (2열, 번호 매김) ===== */
+.mc-search-pop-title { margin: 2px 2px 18px; font-size: 16px; font-weight: 500; color: #2c2622; }
+.mc-search-rank {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-rows: repeat(4, auto); grid-auto-flow: column; grid-auto-columns: 1fr;
+  gap: 2px 44px;
+}
+.mc-search-rank button {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  padding: 12px 12px; border: 0; background: none; border-radius: 11px;
+  font-size: 16px; color: #3d332c; cursor: pointer; text-align: left;
+  transition: background-color .14s ease;
+}
+.mc-search-rank button:hover { background: #fff6ec; }
+.mc-rank-num { flex: 0 0 auto; width: 20px; text-align: center; font-size: 16px; font-weight: 700; color: #cabfb4; }
+.mc-search-rank li:nth-child(-n+3) .mc-rank-num { color: var(--orange); }
+.mc-rank-kw { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ===== 검색 결과 ===== */
+.mc-search-count { margin: 2px 2px 16px; font-size: 14px; color: #8f837a; }
+.mc-search-count b { color: var(--orange); font-weight: 600; }
+.mc-search-list { display: grid; gap: 6px; }
+.mc-search-card { display: flex; align-items: center; gap: 16px; padding: 11px 10px; border-radius: 14px; transition: background-color .14s ease; }
 .mc-search-card:hover { background: #fff6ec; }
-.mc-search-card img { width: 64px; height: 64px; flex: 0 0 auto; object-fit: cover; border-radius: 8px; }
-.mc-sc-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.mc-sc-cat { font-size: 12px; color: var(--orange-dark); }
-.mc-sc-title { font-size: 15px; font-weight: 400; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mc-sc-price { font-size: 14px; font-style: normal; color: #555; }
-.mc-search-empty { text-align: center; color: #999; padding: 36px 0; }
-/* 인기 키워드 */
-.mc-search-pop-title { margin: 6px 2px 14px; font-size: 14px; font-weight: 400; color: #8f837a; }
-.mc-search-pop-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.mc-search-chip {
-  padding: 9px 16px; border: 1px solid #f0d9c2; border-radius: 999px;
-  background: #fff8f1; color: #3d332c; font-size: 14px; cursor: pointer;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
-}
-.mc-search-chip:hover { background: var(--orange); border-color: var(--orange); color: #ffffff; }
+.mc-search-card img { width: 76px; height: 76px; flex: 0 0 auto; object-fit: cover; border-radius: 12px; }
+.mc-sc-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mc-sc-cat { align-self: flex-start; padding: 2px 9px; border-radius: 999px; background: #fff1e2; font-size: 12px; color: var(--orange-dark); }
+.mc-sc-title { font-size: 16px; font-weight: 400; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mc-sc-price { font-size: 15px; font-style: normal; font-weight: 600; color: var(--orange-dark); }
+.mc-search-empty { text-align: center; color: #aaa; padding: 56px 0; font-size: 15px; }
+
 @media (max-width: 767px) {
-  .mc-search-panel { width: 100%; height: 100%; max-height: 100%; margin: 0; border-radius: 0; padding-top: 56px; }
+  .mc-search-panel { width: 100%; height: 100%; max-height: 100%; margin: 0; border-radius: 0; padding: 64px 20px 24px; animation: none; }
+  .mc-search-form { height: 56px; margin-bottom: 22px; }
+  .mc-search-rank { grid-template-rows: none; grid-auto-flow: row; grid-template-columns: 1fr; }
 }
 
 /* 모션 최소화 환경 존중 */

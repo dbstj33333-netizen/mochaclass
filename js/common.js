@@ -122,19 +122,19 @@
 
     var renderPopular = function () {
       results.innerHTML =
-        '<div class="mc-search-pop">' +
-          '<p class="mc-search-pop-title">인기 키워드</p>' +
-          '<div class="mc-search-pop-list">' +
-            POPULAR_KEYWORDS.map(function (k) {
-              return '<button type="button" class="mc-search-chip" data-kw="' + k + '">' + k + '</button>';
-            }).join('') +
-          '</div>' +
-        '</div>';
+        '<p class="mc-search-pop-title">인기 검색어</p>' +
+        '<ol class="mc-search-rank">' +
+          POPULAR_KEYWORDS.map(function (k, i) {
+            return '<li><button type="button" data-kw="' + k + '">' +
+              '<span class="mc-rank-num">' + (i + 1) + '</span>' +
+              '<span class="mc-rank-kw">' + k + '</span></button></li>';
+          }).join('') +
+        '</ol>';
     };
 
     var render = function (q) {
       q = (q || '').trim().toLowerCase();
-      if (!q) { renderPopular(); return; }   // 검색어 없으면 인기 키워드 노출
+      if (!q) { renderPopular(); return; }   // 검색어 없으면 인기 검색어 노출
       if (!data.length) {
         results.innerHTML = '<p class="mc-search-empty">‘클래스 찾기’ 페이지에서 검색해 주세요.</p>';
         return;
@@ -144,13 +144,17 @@
                (c.category && c.category.toLowerCase().indexOf(q) > -1);
       });
       if (!list.length) { results.innerHTML = '<p class="mc-search-empty">검색 결과가 없어요.</p>'; return; }
-      results.innerHTML = list.map(function (c) {
-        return '<a class="mc-search-card" href="offline-class.html">' +
-          '<img src="' + c.image + '" alt="" loading="lazy">' +
-          '<span class="mc-sc-body"><span class="mc-sc-cat">' + (c.category || '') + '</span>' +
-          '<strong class="mc-sc-title">' + c.title + '</strong>' +
-          '<em class="mc-sc-price">' + won(c.price) + '</em></span></a>';
-      }).join('');
+      results.innerHTML =
+        '<p class="mc-search-count">검색 결과 <b>' + list.length + '</b>건</p>' +
+        '<div class="mc-search-list">' +
+          list.map(function (c) {
+            return '<a class="mc-search-card" href="offline-class.html">' +
+              '<img src="' + c.image + '" alt="" loading="lazy">' +
+              '<span class="mc-sc-body"><span class="mc-sc-cat">' + (c.category || '') + '</span>' +
+              '<strong class="mc-sc-title">' + c.title + '</strong>' +
+              '<em class="mc-sc-price">' + won(c.price) + '</em></span></a>';
+          }).join('') +
+        '</div>';
     };
     var openSearch = function () {
       overlay.classList.add('is-open');
@@ -168,11 +172,11 @@
     overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSearch(); });
     overlay.querySelector('.mc-search-form').addEventListener('submit', function (e) { e.preventDefault(); });
     input.addEventListener('input', function () { render(input.value); });
-    /* 인기 키워드 칩 클릭 → 검색어로 입력하고 결과 표시 */
+    /* 인기 검색어 클릭 → 검색어로 입력하고 결과 표시 */
     results.addEventListener('click', function (e) {
-      var chip = e.target.closest('.mc-search-chip');
-      if (!chip) return;
-      input.value = chip.getAttribute('data-kw');
+      var btn = e.target.closest('[data-kw]');
+      if (!btn) return;
+      input.value = btn.getAttribute('data-kw');
       render(input.value);
       input.focus();
     });
