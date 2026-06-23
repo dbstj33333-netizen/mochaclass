@@ -142,16 +142,16 @@
 .rv-quote {
   position: relative;
   margin: 0;
+  padding-top: 34px;            /* 위쪽 인용부호 자리 */
   color: var(--rv-muted);
   line-height: 1.85;
 }
 .rv-quote::before {
   content: "\201C";
-  display: block;
+  position: absolute; top: 2px; left: 0;   /* 흐름에서 제외 → 본문 줄 수 제한이 깔끔 */
   font-size: 46px;
   line-height: 0.6;
   color: rgba(242, 122, 26, 0.28);
-  margin-bottom: 6px;
 }
 
 /* ===== 대표 후기 (가로형) ===== */
@@ -181,17 +181,24 @@
 .rv-card {
   display: grid;
   grid-template-columns: 340px 1fr;
+  height: 290px;                 /* 모든 후기 카드 동일 높이 */
   background: var(--rv-surface);
   border: 1px solid var(--rv-border);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: none;
 }
-.rv-card-img { min-height: 240px; }
+.rv-card-img { height: 100%; }
 .rv-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.rv-card-body { padding: 34px 40px; align-self: center; }
-.rv-card-body h3 { margin: 0 0 14px; font-size: 21px; font-weight: 600; color: var(--rv-text); }
-.rv-card-body .rv-quote { font-size: 16px; }
+.rv-card-body { padding: 28px 40px; align-self: center; overflow: hidden; }
+.rv-card-body h3 {
+  margin: 0 0 4px; font-size: 21px; font-weight: 600; color: var(--rv-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;   /* 제목 1줄 */
+}
+.rv-card-body .rv-quote {
+  font-size: 16px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;  /* 본문 2줄 */
+}
 
 /* ===== CTA 배너 ===== */
 .rv-cta {
@@ -235,10 +242,12 @@
   .rv-feature-body { padding: 28px 24px 32px; }
   .rv-feature-body h3 { font-size: 22px; }
   .rv-grid { grid-template-columns: 1fr; gap: 22px; }
-  /* 모바일: 후기 카드도 세로(이미지 위)로 전환 */
-  .rv-card { grid-template-columns: 1fr; }
+  /* 모바일: 후기 카드도 세로(이미지 위)로 전환, 고정 높이 해제 */
+  .rv-card { grid-template-columns: 1fr; height: auto; }
   .rv-card-img { min-height: 200px; height: 200px; }
   .rv-card-body { padding: 26px 24px 30px; }
+  .rv-card-body h3 { white-space: normal; }                 /* 제목 줄바꿈 허용 */
+  .rv-card-body .rv-quote { -webkit-line-clamp: 4; }        /* 본문 여유 있게 */
   .rv-cta-inner { flex-direction: column; text-align: center; }
   .rv-cta-btns { justify-content: center; width: 100%; }
   .rv-btn { width: 100%; }
