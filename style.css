@@ -1240,29 +1240,22 @@ section > .outline-button,
   .nav-menu .nav-item {
     display: grid; grid-template-rows: auto 0fr; align-items: stretch; min-height: 0;
     margin-bottom: 2px;
-    transition: grid-template-rows .42s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: grid-template-rows .55s cubic-bezier(0.16, 1, 0.3, 1);  /* 부드럽게 감속하며 펼침 */
   }
   .nav-menu .nav-item.is-open { grid-template-rows: auto 1fr; }
   .nav-menu .nav-item > a {
     display: flex; align-items: center; min-height: 52px;
     background: none; color: var(--black); -webkit-text-fill-color: currentColor;
   }
-  /* 2차 메뉴가 있는 항목: 우측에 원형 토글 버튼(접힘 ▼ / 펼침 ▲) */
-  .nav-shell .nav-menu .nav-item:has(> .sub-menu) > a { position: relative; padding-right: 48px; }
-  .nav-shell .nav-menu .nav-item:has(> .sub-menu) > a::after {   /* 원형 버튼 배경 */
-    content: ""; position: absolute; right: 4px; top: 50%;
-    width: 30px; height: 30px; margin-top: -15px;
-    border-radius: 999px; background: rgba(245, 130, 31, 0.14);
-    transition: background-color .2s ease;
+  /* 2차 메뉴가 있는 항목: 우측에 회색 화살표(배경 없음, 접힘 ▼ / 펼침 ▲) */
+  .nav-shell .nav-menu .nav-item:has(> .sub-menu) > a { position: relative; padding-right: 30px; }
+  .nav-shell .nav-menu .nav-item:has(> .sub-menu) > a::after {
+    content: ""; position: absolute; right: 8px; top: 50%; margin-top: -7px;
+    width: 9px; height: 9px;
+    border-right: 2px solid #aaa; border-bottom: 2px solid #aaa;
+    transform: rotate(45deg); transition: transform .3s ease;
   }
-  .nav-shell .nav-menu .nav-item:has(> .sub-menu) > a::before {  /* 쉐브론 화살표 */
-    content: ""; position: absolute; right: 13px; top: 50%; z-index: 1;
-    width: 8px; height: 8px; margin-top: -7px;
-    border-right: 2px solid var(--orange); border-bottom: 2px solid var(--orange);
-    transform: rotate(45deg); transition: transform .28s ease;
-  }
-  .nav-shell .nav-menu .nav-item.is-open > a::after { background: rgba(245, 130, 31, 0.28); }
-  .nav-shell .nav-menu .nav-item.is-open > a::before { transform: rotate(-135deg); margin-top: -3px; }
+  .nav-shell .nav-menu .nav-item.is-open > a::after { transform: rotate(-135deg); margin-top: -2px; }
   /* 2차 메뉴: 주황 배경 카드 (grid 0fr 트랙에서 높이 0 → overflow로 숨김, 1fr 에서 내용만큼 펼침) */
   .nav-menu .sub-menu {
     display: block; position: static;
