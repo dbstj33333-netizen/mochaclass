@@ -76,25 +76,14 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 452px;
-  padding-top: 0;
+  padding: 0 7vw;
   overflow: hidden;
-  background: linear-gradient(120deg, #ff9b3e 0%, #f27a1a 55%, #e76d0f 100%);
-  color: #ffffff;
-  text-align: center;
+  background: #f7ead9 url("../images/sub1_hero.png") left center / cover no-repeat;
+  color: #3d332c;
+  text-align: left;
 }
-
-.oc-hero::before,
-.oc-hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.10);
-  pointer-events: none;
-}
-.oc-hero::before { top: -110px; left: -70px; width: 320px; height: 320px; }
-.oc-hero::after { right: -80px; bottom: -150px; width: 380px; height: 380px; }
 
 .oc-hero-text { position: relative; z-index: 1; }
 .oc-hero-text h1 { margin: 0; font-size: 50px; font-weight: 500; letter-spacing: 0.5px; }
