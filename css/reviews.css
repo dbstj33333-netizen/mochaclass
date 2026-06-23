@@ -25,28 +25,28 @@
   margin-inline: auto;
 }
 
-/* ===== 헤더 오버라이드 (주황 히어로 위 흰색 메뉴) ===== */
+/* ===== 헤더 오버라이드 (밝은 일러스트 히어로 위 어두운 메뉴) ===== */
 .rv-page .nav-shell {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(50, 40, 35, 0.10);
+  background: rgba(255, 255, 255, 0.55);
 }
 .rv-page .nav-item > a,
 .rv-page .nav-actions a {
-  color: #ffffff;
+  color: var(--rv-text);
   background: none;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--rv-text);
   font-weight: 400;
 }
 .rv-page .nav-item.is-current > a {
   font-weight: 400;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--rv-text);
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
 }
 .rv-page .sub-menu a { -webkit-text-fill-color: transparent; }
-.rv-page .search-button { filter: brightness(0) invert(1); }
-.rv-page .menu-toggle span { background: #ffffff; }
+.rv-page .search-button { filter: none; }
+.rv-page .menu-toggle span { background: var(--rv-text); }
 /* 태블릿·모바일 햄버거 펼침(크림 배경) 시 메뉴 글씨·아이콘을 어둡게 → 가독성 확보 */
 .rv-page .nav-shell.is-nav-open { background: rgba(255, 250, 243, 0.98); }
 .rv-page .nav-shell.is-nav-open .nav-item > a,
@@ -111,25 +111,18 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: 452px;
-  padding: 24px;
   overflow: hidden;
-  text-align: center;
-  color: #ffffff;
-  background: linear-gradient(120deg, #ff9b3e 0%, #f27a1a 55%, #e76d0f 100%);
+  text-align: left;
+  color: var(--rv-text);
+  background: #f7ead9 url("../images/sub3_hero.png") left center / cover no-repeat;
 }
-.rv-hero::before,
-.rv-hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.10);
-  pointer-events: none;
+/* 제목을 본문 콘텐츠(.rv-wrap)와 동일한 컨테이너 폭·좌측 정렬로 맞춤 */
+.rv-hero-inner {
+  position: relative; z-index: 1;
+  width: min(var(--rv-container), calc(100% - 48px));
+  margin: 0 auto;
 }
-.rv-hero::before { top: -110px; left: -70px; width: 320px; height: 320px; }
-.rv-hero::after { right: -80px; bottom: -150px; width: 380px; height: 380px; }
-.rv-hero-inner { position: relative; z-index: 1; }
 .rv-hero-title { margin: 0; font-size: 50px; font-weight: 500; letter-spacing: 0.5px; }
 .rv-hero-sub { margin: 16px 0 0; font-size: 18px; font-weight: 200; opacity: 0.95; }
 
@@ -233,11 +226,11 @@
 
 /* 모바일 좌우 여백 20px 통일 */
 @media (max-width: 767px) {
-  .rv-wrap { width: calc(100% - 40px); }
+  .rv-wrap, .rv-hero-inner { width: calc(100% - 40px); }
 }
 
 @media (max-width: 680px) {
-  .rv-hero { padding: 24px 20px; }
+  .rv-hero { min-height: 360px; }
   .rv-hero-title { font-size: 34px; }
   .rv-hero-sub { font-size: 15px; }
   .rv-h2 { font-size: 27px; }

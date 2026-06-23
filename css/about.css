@@ -26,28 +26,28 @@
   margin-inline: auto;
 }
 
-/* ===== 헤더 오버라이드 (주황 히어로 위 흰색 메뉴) ===== */
+/* ===== 헤더 오버라이드 (밝은 일러스트 히어로 위 어두운 메뉴) ===== */
 .ab-page .nav-shell {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(50, 40, 35, 0.10);
+  background: rgba(255, 255, 255, 0.55);
 }
 .ab-page .nav-item > a,
 .ab-page .nav-actions a {
-  color: #ffffff;
+  color: var(--ab-text);
   background: none;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--ab-text);
   font-weight: 400;
 }
 .ab-page .nav-item.is-current > a {
   font-weight: 400;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: var(--ab-text);
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
 }
 .ab-page .sub-menu a { -webkit-text-fill-color: transparent; }
-.ab-page .search-button { filter: brightness(0) invert(1); }
-.ab-page .menu-toggle span { background: #ffffff; }
+.ab-page .search-button { filter: none; }
+.ab-page .menu-toggle span { background: var(--ab-text); }
 /* 태블릿·모바일 햄버거 펼침(크림 배경) 시 메뉴 글씨·아이콘을 어둡게 → 가독성 확보 */
 .ab-page .nav-shell.is-nav-open { background: rgba(255, 250, 243, 0.98); }
 .ab-page .nav-shell.is-nav-open .nav-item > a,
@@ -111,25 +111,18 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: 452px;
-  padding: 24px var(--ab-gutter);
   overflow: hidden;
-  text-align: center;
-  color: #ffffff;
-  background: linear-gradient(120deg, #ff9b3e 0%, #f27a1a 55%, #e76d0f 100%);
+  text-align: left;
+  color: var(--ab-text);
+  background: #f7ead9 url("../images/sub2_hero.png") left center / cover no-repeat;
 }
-.ab-hero::before,
-.ab-hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.10);
-  pointer-events: none;
+/* 제목을 본문 콘텐츠(.ab-wrap)와 동일한 컨테이너 폭·좌측 정렬로 맞춤 */
+.ab-hero-inner {
+  position: relative; z-index: 1;
+  width: min(var(--ab-container), calc(100% - var(--ab-gutter) * 2));
+  margin: 0 auto;
 }
-.ab-hero::before { top: -110px; left: -70px; width: 320px; height: 320px; }
-.ab-hero::after { right: -80px; bottom: -150px; width: 380px; height: 380px; }
-.ab-hero-inner { position: relative; z-index: 1; max-width: 800px; }
 .ab-hero-title {
   margin: 0;
   font-size: 50px;
