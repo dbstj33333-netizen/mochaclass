@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mocha Class · 디자인 시스템</title>
+<style>
+  /* ===== A2z 폰트 (사이트와 동일) ===== */
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-1Thin.woff2') format('woff2'); font-weight:100; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-2ExtraLight.woff2') format('woff2'); font-weight:200; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2'); font-weight:300; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-4Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-5Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-6SemiBold.woff2') format('woff2'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'A2z'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 64px 7vw 120px;
+    font-family: 'A2z','Pretendard','Noto Sans KR',Arial,sans-serif;
+    color: #2c2622; background: #fffaf3; word-break: keep-all; font-weight: 400;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header.ds-head { margin-bottom: 56px; }
+  header.ds-head .kicker { display:inline-block; font-size:13px; letter-spacing:2px; font-weight:600; color:#f5821e; text-transform:uppercase; margin-bottom:14px; }
+  header.ds-head h1 { margin:0; font-size:46px; font-weight:600; }
+  header.ds-head p { margin:14px 0 0; color:#8f837a; font-size:16px; font-weight:300; }
+
+  section.ds { margin-top: 64px; }
+  .ds-title { display:flex; align-items:center; gap:12px; margin:0 0 6px; font-size:13px; letter-spacing:2px; font-weight:600; color:#f5821e; text-transform:uppercase; }
+  .ds-h2 { margin:0 0 24px; font-size:30px; font-weight:600; }
+  .ds-note { margin:0 0 28px; color:#8f837a; font-size:15px; font-weight:300; line-height:1.7; }
+
+  /* ===== 컬러 ===== */
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:18px; }
+  .sw { border:1px solid #ece3db; border-radius:14px; overflow:hidden; background:#fff; }
+  .sw .chip { height:92px; }
+  .sw .meta { padding:12px 14px 14px; }
+  .sw .meta .role { font-size:14px; font-weight:500; }
+  .sw .meta .hex { font-size:13px; color:#8f837a; font-weight:300; margin-top:3px; text-transform:uppercase; letter-spacing:.4px; }
+  .sw .meta .use { font-size:12px; color:#b3a99f; font-weight:300; margin-top:6px; }
+  .chk { background-image:linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%); background-size:14px 14px; background-position:0 0,0 7px,7px -7px,-7px 0; }
+
+  .grouplabel { margin:32px 0 16px; font-size:16px; font-weight:600; padding-bottom:8px; border-bottom:1px solid #efe5db; }
+
+  /* ===== 타이포 ===== */
+  .scale-row { display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:baseline; padding:18px 0; border-bottom:1px solid #efe5db; }
+  .scale-row .spec { font-size:13px; color:#8f837a; font-weight:300; line-height:1.6; }
+  .scale-row .spec b { display:block; color:#2c2622; font-weight:600; font-size:13px; }
+  .scale-row .sample { color:#2c2622; line-height:1.2; }
+
+  .weights { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+  .wcard { border:1px solid #ece3db; border-radius:12px; padding:18px 20px; background:#fff; }
+  .wcard .wlabel { font-size:12px; color:#8f837a; font-weight:300; margin-bottom:6px; }
+  .wcard .wsample { font-size:26px; }
+
+  /* ===== 토큰 표 ===== */
+  table.tok { width:100%; border-collapse:collapse; font-size:14px; }
+  table.tok th, table.tok td { text-align:left; padding:12px 14px; border-bottom:1px solid #efe5db; font-weight:400; }
+  table.tok th { font-weight:600; color:#8f837a; font-size:12px; letter-spacing:.5px; text-transform:uppercase; }
+  table.tok td code { background:#fff3e8; color:#c7610c; padding:2px 7px; border-radius:6px; font-size:13px; }
+
+  .callout { margin-top:18px; padding:20px 24px; background:#fff3e8; border:1px solid #ffe2c4; border-radius:14px; font-size:14px; line-height:1.8; font-weight:300; color:#6b4a28; }
+  .callout b { font-weight:600; color:#a85a12; }
+  .pill { display:inline-block; padding:2px 9px; border-radius:999px; background:#fff; border:1px solid #ffd7ad; font-size:12px; color:#c7610c; margin:0 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="ds-head">
+    <span class="kicker">Mocha Class · Design System</span>
+    <h1>모카클래스 디자인 시스템</h1>
+    <p>현재 코드(style.css / css·페이지별)에서 추출한 컬러·폰트 위계 정리본입니다. 실제 사용 중인 값 기준이며, 페이지마다 갈라진 토큰도 함께 표기했어요.</p>
+  </header>
+
+  <!-- ============ COLOR ============ -->
+  <section class="ds">
+    <p class="ds-title">01 — Color</p>
+    <h2 class="ds-h2">컬러 위계</h2>
+    <p class="ds-note">브랜드는 <b>따뜻한 오렌지 + 크림 베이지</b> 팔레트. 위계는 ① 브랜드(주황) → ② 텍스트(딥브라운) → ③ 배경(크림) → ④ 보더/뮤트 → ⑤ 보조 틴트 순입니다.</p>
+
+    <div class="grouplabel">① 브랜드 / Primary</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#ff8a2b"></div><div class="meta"><div class="role">Primary</div><div class="hex">#ff8a2b</div><div class="use">CTA·강조·호버 채움 (--orange)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#f5821e"></div><div class="meta"><div class="role">Primary Dark</div><div class="hex">#f5821e</div><div class="use">강조 텍스트·가격 (--orange-dark)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#f27a1a"></div><div class="meta"><div class="role">Primary Dark · alt</div><div class="hex">#f27a1a</div><div class="use">서브페이지(ab/rv/oc primary)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#dc6810"></div><div class="meta"><div class="role">Primary Deepest</div><div class="hex">#dc6810</div><div class="use">오프라인 강조 (--primary-dark)</div></div></div>
+    </div>
+
+    <div class="grouplabel">② 텍스트 / Text</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#222222"></div><div class="meta"><div class="role">Text · Base</div><div class="hex">#222222</div><div class="use">메인 본문 (--black)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2c2622"></div><div class="meta"><div class="role">Text · Warm</div><div class="hex">#2c2622</div><div class="use">소개·후기 (--ab/rv-text)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#322b27"></div><div class="meta"><div class="role">Text · Warm alt</div><div class="hex">#322b27</div><div class="use">오프라인 (--oc-text)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#8f837a"></div><div class="meta"><div class="role">Muted</div><div class="hex">#8f837a</div><div class="use">보조 설명·캡션 (--muted)</div></div></div>
+    </div>
+
+    <div class="grouplabel">③ 배경 / Surface & Background</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#ffffff;border-bottom:1px solid #eee"></div><div class="meta"><div class="role">Surface</div><div class="hex">#ffffff</div><div class="use">카드·패널</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fffaf3"></div><div class="meta"><div class="role">Background</div><div class="hex">#fffaf3</div><div class="use">메인 페이지 바탕</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fffaf4"></div><div class="meta"><div class="role">BG · alt</div><div class="hex">#fffaf4 / f5</div><div class="use">서브페이지 바탕</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fdf9f2"></div><div class="meta"><div class="role">Cream</div><div class="hex">#fdf9f2</div><div class="use">크림 섹션 (--cream)</div></div></div>
+    </div>
+
+    <div class="grouplabel">④ 보더 / 라인</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#f0dfcf"></div><div class="meta"><div class="role">Line</div><div class="hex">#f0dfcf</div><div class="use">구분선 (--line)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#ece3db"></div><div class="meta"><div class="role">Border</div><div class="hex">#ece3db</div><div class="use">카드 테두리 (ab/rv)</div></div></div>
+      <div class="sw"><div class="chip" style="background:#e8e1dc"></div><div class="meta"><div class="role">Border · alt</div><div class="hex">#e8e1dc</div><div class="use">오프라인 (--oc-border)</div></div></div>
+    </div>
+
+    <div class="grouplabel">⑤ 보조 틴트 / Soft</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#fff3e8"></div><div class="meta"><div class="role">Orange Soft</div><div class="hex">#fff3e8</div><div class="use">배지·연한 강조</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fff2e7"></div><div class="meta"><div class="role">Orange Soft · alt</div><div class="hex">#fff2e7</div><div class="use">--primary-light</div></div></div>
+      <div class="sw"><div class="chip" style="background:#fff6ec"></div><div class="meta"><div class="role">Hover Tint</div><div class="hex">#fff6ec</div><div class="use">리스트·카드 호버</div></div></div>
+      <div class="sw"><div class="chip" style="background:#f1e5dc"></div><div class="meta"><div class="role">Footer BG</div><div class="hex">#f1e5dc</div><div class="use">오프라인 푸터</div></div></div>
+    </div>
+
+    <div class="callout">
+      ⚠️ <b>일관성 메모</b> — 의미가 같은 토큰이 페이지마다 살짝 다릅니다.
+      주황-딥 <span class="pill">#f5821e</span><span class="pill">#f27a1a</span><span class="pill">#dc6810</span> ·
+      텍스트 <span class="pill">#222222</span><span class="pill">#2c2622</span><span class="pill">#322b27</span> ·
+      크림 <span class="pill">#fffaf3</span><span class="pill">#fffaf4</span><span class="pill">#fffaf5</span> ·
+      뮤트 <span class="pill">#8f837a</span><span class="pill">#877d76</span><span class="pill">#8b837d</span>.
+      한 벌의 전역 변수로 통일하면 관리가 쉬워집니다.
+    </div>
+  </section>
+
+  <!-- ============ TYPOGRAPHY ============ -->
+  <section class="ds">
+    <p class="ds-title">02 — Typography</p>
+    <h2 class="ds-h2">폰트 위계</h2>
+    <p class="ds-note">
+      서체 <b>‘A2z(에이투지체)’</b> — fallback: Pretendard → Noto Sans KR → Arial.
+      본문 기본 굵기 400, <code style="background:#fff3e8;color:#c7610c;padding:1px 6px;border-radius:5px;">word-break: keep-all</code> 적용.
+    </p>
+
+    <div class="grouplabel">Weight 스케일 (100–700)</div>
+    <div class="weights">
+      <div class="wcard"><div class="wlabel">100 · Thin</div><div class="wsample" style="font-weight:100">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">200 · ExtraLight</div><div class="wsample" style="font-weight:200">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">300 · Light · 본문 보조</div><div class="wsample" style="font-weight:300">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">400 · Regular · 본문 기본</div><div class="wsample" style="font-weight:400">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">500 · Medium · 소제목</div><div class="wsample" style="font-weight:500">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">600 · SemiBold · 제목/강조</div><div class="wsample" style="font-weight:600">모이는 시간 Aa</div></div>
+      <div class="wcard"><div class="wlabel">700 · Bold</div><div class="wsample" style="font-weight:700">모이는 시간 Aa</div></div>
+    </div>
+
+    <div class="grouplabel">타입 스케일 (실제 사용 사이즈)</div>
+
+    <div class="scale-row">
+      <div class="spec"><b>Display</b>70 px / 600<br>메인 히어로 h1</div>
+      <div class="sample" style="font-size:70px;font-weight:600">특별한 경험</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>H1 · Hero</b>50 px / 500<br>서브페이지 히어로</div>
+      <div class="sample" style="font-size:50px;font-weight:500">모카클래스 소개</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>H2 · Section</b>40 px / 600<br>섹션 타이틀</div>
+      <div class="sample" style="font-size:40px;font-weight:600">참여자들이 남긴 이야기</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>H2 · sm</b>38 px / 400<br>소개 본문 헤드</div>
+      <div class="sample" style="font-size:38px;font-weight:400">일상의 따뜻한 휴식</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>H3 · Card</b>21–26 px / 600<br>카드 제목</div>
+      <div class="sample" style="font-size:24px;font-weight:600">가족과 만들기 체험</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>Lead</b>18–19 px / 200–300<br>히어로 서브카피·리드</div>
+      <div class="sample" style="font-size:18px;font-weight:300">오프라인으로 개설된 클래스를 찾아보세요</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>Body</b>15–16 px / 300–400<br>본문 기본 (가장 많이 사용)</div>
+      <div class="sample" style="font-size:16px;font-weight:400">그림이 처음이어도 부담 없이 즐길 수 있었어요.</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>Caption</b>12–14 px / 400<br>배지·태그·메타</div>
+      <div class="sample" style="font-size:13px;font-weight:400;color:#8f837a">베이킹 · 성수동 · 48,000원</div>
+    </div>
+    <div class="scale-row">
+      <div class="spec"><b>Eyebrow</b>13–14 px / 600<br>letter-spacing 2px · 대문자</div>
+      <div class="sample" style="font-size:13px;font-weight:600;letter-spacing:2px;color:#f5821e;text-transform:uppercase">About Mocha Class</div>
+    </div>
+  </section>
+
+  <!-- ============ TOKENS ============ -->
+  <section class="ds">
+    <p class="ds-title">03 — Tokens</p>
+    <h2 class="ds-h2">기타 토큰</h2>
+    <table class="tok">
+      <tr><th>항목</th><th>값</th><th>비고</th></tr>
+      <tr><td>컨테이너 · 메인/오프라인</td><td><code>1520px</code> (calc(100% − 112px))</td><td>--container / --oc-container</td></tr>
+      <tr><td>컨테이너 · 소개/후기</td><td><code>1120px</code> (calc(100% − 48px))</td><td>--ab/rv-container</td></tr>
+      <tr><td>좌우 여백(모바일)</td><td><code>20px</code> (calc(100% − 40px))</td><td>≤767px 공통</td></tr>
+      <tr><td>라운드</td><td><code>12 / 14 / 16 / 20–22px</code></td><td>버튼·입력 / 카드 / 패널 / 큰 카드</td></tr>
+      <tr><td>그림자</td><td><code>0 18px 44px rgba(120,84,50,.10)</code></td><td>--ab/rv-shadow (후기 카드는 제거됨)</td></tr>
+      <tr><td>히어로 높이</td><td><code>452px</code> / 모바일 <code>360px</code></td><td>서브페이지 3종 통일</td></tr>
+      <tr><td>버튼/알약</td><td><code>border-radius: 999px</code></td><td>CTA·칩·검색바</td></tr>
+    </table>
+  </section>
+
+</div>
+</body>
+</html>
