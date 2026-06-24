@@ -781,17 +781,22 @@
   .oc-location { flex-direction: column; gap: 6px; }
   .oc-location .oc-loc-btns { margin-top: 6px; }
 
+  /* 그리드 자식이 콘텐츠 최소폭 때문에 카드를 밀어 넓히지 않도록(우측 삐져나옴 방지) */
+  .oc-search-area, .oc-location { min-width: 0; }
+
   /* 필터 버튼 2열, 초기화/검색 50%씩 한 줄 */
   .oc-filter-row { gap: 8px; }
   .oc-filter { flex: 1 1 calc(50% - 4px); min-width: 0; }
-  /* 터치영역 44px · 좁은 화면에서 "카테고리 전체"까지 안 잘리게 패딩/글씨 축소 */
-  .oc-filter-btn { width: 100%; justify-content: flex-start; min-height: 44px; padding: 0 8px; gap: 4px; }
+  /* 터치영역 44px · 폰트 폭(폴백 폰트 포함)에 상관없이 버튼 밖으로 절대 안 넘치게:
+     내용은 모두 줄어들 수 있고, 넘치면 버튼 내부에서 말줄임/클립 → 카드 밖 삐져나옴 차단 */
+  .oc-filter-btn { width: 100%; justify-content: flex-start; min-height: 44px; padding: 0 8px; gap: 4px; overflow: hidden; }
+  .oc-filter-btn .oc-fi-icon { flex: 0 0 auto; }
   .oc-filter-btn .oc-fi-icon img { width: 14px; height: 14px; }
-  .oc-filter-btn .oc-filter-name { flex: 0 0 auto; font-size: 13px; }
-  .oc-filter-btn .oc-filter-val { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .oc-filter-btn .oc-filter-name { flex: 0 1 auto; min-width: 0; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .oc-filter-btn .oc-filter-val { flex: 0 1 auto; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .oc-filter-btn .oc-chevron { margin-left: auto; flex: 0 0 auto; }   /* 셰브론 항상 오른쪽 끝 → 2열 정렬 통일 */
   .oc-filter[data-filter="detail"] { flex-basis: 100%; }
-  .oc-reset-btn { flex: 1 1 calc(50% - 4px); margin-left: 0; justify-content: center; }
+  .oc-reset-btn { flex: 1 1 calc(50% - 4px); margin-left: 0; min-width: 0; justify-content: center; }
   .oc-search-submit { flex: 1 1 calc(50% - 4px); margin-left: 0; min-width: 0; }
 
   .oc-search input { font-size: 16px; }   /* iOS 자동 확대 방지 */
@@ -861,6 +866,11 @@
   .oc-result-body[data-view="list"] .oc-thumb-empty { height: 70px; }
   .oc-loc-list { grid-template-columns: 1fr 1fr; }
   .oc-detail-grid { grid-template-columns: 1fr; }
+
+  /* 폰 폭(≤480): 필터 아이콘 숨겨 "지역/카테고리/요일/금액 + 전체" 라벨이
+     말줄임 없이 버튼에 깔끔히 들어가도록(우측 삐져나옴 완전 차단) */
+  .oc-filter-btn .oc-fi-icon { display: none; }
+  .oc-filter-btn { gap: 6px; padding: 0 10px; }
 }
 
 /* 모션 최소화 환경 존중 */
