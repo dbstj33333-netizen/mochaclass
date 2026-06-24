@@ -1433,8 +1433,25 @@ section > .outline-button,
 
   /* 빠른메뉴를 위로 끌어올려 히어로 하단의 빈 크림 띠 제거(데스크톱처럼 겹침) */
   .quick-menu { position: relative; z-index: 5; margin-top: -9vh; }
-  /* 빠른메뉴 3 → 2열 */
-  .quick-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; padding-top: 6px; padding-bottom: 56px; }
+  /* 빠른메뉴(CTA): 오늘의집 스타일 — 작은 아이콘 + 원형 테두리 타일 + 가로 스크롤 */
+  .quick-grid {
+    display: flex; grid-template-columns: none; flex-wrap: nowrap; gap: 14px;
+    width: 100%; max-width: none;
+    padding: 6px 20px 44px;            /* 좌우 20px → 첫 아이콘 히어로 텍스트와 정렬 */
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x proximity; scroll-padding-left: 20px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .quick-grid::-webkit-scrollbar { display: none; }
+  .quick-item { flex: 0 0 auto; width: 76px; scroll-snap-align: start; }
+  .quick-item img {
+    width: 30px; height: 30px; padding: 14px;     /* 아이콘 이미지 확 축소 */
+    border: 1px solid #f0dfcf; border-radius: 50%;  /* 원형 테두리 타일 */
+    background: #fff; box-sizing: content-box;
+    box-shadow: 0 6px 16px rgba(118, 86, 62, 0.07);
+  }
+  .quick-item strong { margin-top: 9px; font-size: 12px; line-height: 1.25; }
+  .quick-item span { display: none; }   /* 부제 숨김 → 깔끔한 아이콘 CTA */
 
   .section-title h2 { font-size: clamp(24px, 6vw, 34px); }
   /* #5: '사랑받는 클래스'(popular)도 '클래스 후기'(reviews)와 동일 크기로 통일
