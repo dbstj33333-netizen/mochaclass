@@ -175,8 +175,8 @@
           '<span class="oc-card-badge">' + c.category + '</span>' +
           '<h3 class="oc-card-title">' + c.title + '</h3>' +
           '<p class="oc-card-meta">' +
-            '<span>' + icons.pin + c.studio + '</span><br>' +
-            '<span>' + icons.calendar + c.schedule + '</span>' +
+            '<span>' + icons.pin + '<i>' + c.studio + '</i></span>' +
+            '<span>' + icons.calendar + '<i>' + c.schedule + '</i></span>' +
           '</p>' +
         '</div>' +
         '<div class="oc-card-side">' +

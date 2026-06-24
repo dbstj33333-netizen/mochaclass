@@ -130,7 +130,7 @@ img {
   display: grid;
   grid-template-columns: 260px 1fr 310px;
   align-items: center;
-  width: min(1802px, calc(100% - 118px));
+  width: min(var(--container), calc(100% - 112px));   /* 히어로·본문 콘텐츠와 좌우 여백 동일 */
   height: 75px;
   margin: 0 auto;
   padding: 0 140px;
@@ -416,8 +416,8 @@ img {
 
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);   /* CTA 3×2 배열 */
+  gap: 28px 30px;
   width: 1520px;
   max-width: calc(100% - 112px);
   margin: 0 auto;
@@ -437,40 +437,40 @@ img {
 .quick-item::before {
   content: "";
   position: absolute;
-  top: -52px;
+  top: -32px;
   left: 50%;
   z-index: 0;
-  width: 179px;
-  height: 198px;
+  width: 120px;
+  height: 130px;
   border-radius: 50%;
   background: #ffffff;
-  filter: blur(74px);
+  filter: blur(56px);
   transform: translateX(-50%);
 }
 
 .quick-item img {
   position: relative;
   z-index: 1;
-  width: 100px;
-  height: 94px;
+  width: 62px;
+  height: 58px;
   object-fit: contain;
 }
 
 .quick-item strong {
   position: relative;
   z-index: 1;
-  margin-top: 12px;
+  margin-top: 10px;
   color: #222222;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .quick-item span {
   position: relative;
   z-index: 1;
-  margin-top: 7px;
+  margin-top: 5px;
   color: #888888;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
 }
 
@@ -845,6 +845,9 @@ img {
   font-size: 20px;
   line-height: 1.35;
   font-weight: 400;
+  white-space: nowrap;          /* 카드 제목: 줄바꿈 없이 한 줄 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price {

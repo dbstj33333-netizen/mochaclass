@@ -451,14 +451,14 @@
   font-weight: 500;
   line-height: 1.35;
   color: var(--oc-text);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;          /* 카드 제목: 줄바꿈 없이 한 줄 */
   overflow: hidden;
+  text-overflow: ellipsis;
 }
-.oc-card-meta { margin: 0; color: var(--oc-muted); font-size: 15px; line-height: 1.7; }
-.oc-card-meta span { display: inline-flex; align-items: center; gap: 4px; }
-.oc-card-meta svg { width: 13px; height: 13px; color: #b8a89a; }
+.oc-card-meta { margin: 0; color: var(--oc-muted); font-size: 15px; line-height: 1.7; min-width: 0; }
+.oc-card-meta span { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.oc-card-meta span i { font-style: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }  /* 공방·일정: 한 줄 + 말줄임 */
+.oc-card-meta svg { flex: 0 0 auto; width: 13px; height: 13px; color: #b8a89a; }
 
 .oc-card-side {
   flex: 0 0 auto;
@@ -783,8 +783,13 @@
 
   /* 필터 버튼 2열, 초기화/검색 50%씩 한 줄 */
   .oc-filter-row { gap: 8px; }
-  .oc-filter { flex: 1 1 calc(50% - 4px); }
-  .oc-filter-btn { width: 100%; justify-content: flex-start; min-height: 44px; }   /* 터치영역 44px */
+  .oc-filter { flex: 1 1 calc(50% - 4px); min-width: 0; }
+  /* 터치영역 44px · 좁은 화면에서 "카테고리 전체"까지 안 잘리게 패딩/글씨 축소 */
+  .oc-filter-btn { width: 100%; justify-content: flex-start; min-height: 44px; padding: 0 8px; gap: 4px; }
+  .oc-filter-btn .oc-fi-icon img { width: 14px; height: 14px; }
+  .oc-filter-btn .oc-filter-name { flex: 0 0 auto; font-size: 13px; }
+  .oc-filter-btn .oc-filter-val { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .oc-filter-btn .oc-chevron { margin-left: auto; flex: 0 0 auto; }   /* 셰브론 항상 오른쪽 끝 → 2열 정렬 통일 */
   .oc-filter[data-filter="detail"] { flex-basis: 100%; }
   .oc-reset-btn { flex: 1 1 calc(50% - 4px); margin-left: 0; justify-content: center; }
   .oc-search-submit { flex: 1 1 calc(50% - 4px); margin-left: 0; min-width: 0; }
@@ -812,7 +817,7 @@
   .oc-result-body[data-view="list"] .oc-thumb-empty { height: 80px; }
   .oc-result-body[data-view="list"] .oc-card-body { padding: 8px; }
   .oc-result-body[data-view="list"] .oc-card-badge { font-size: 15px; padding: 2px 6px; margin-bottom: 4px; }
-  .oc-result-body[data-view="list"] .oc-card-title { font-size: 15px; line-height: 1.3; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 6px; }
+  .oc-result-body[data-view="list"] .oc-card-title { font-size: 15px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0 0 6px; }
   .oc-result-body[data-view="list"] .oc-card-meta { display: none; }       /* 공방·일정: 좁은 그리드에서 숨김 */
   .oc-result-body[data-view="list"] .oc-card-side { flex-direction: column; align-items: flex-start; padding: 0 8px 8px; gap: 0; }
   .oc-result-body[data-view="list"] .oc-fav,
