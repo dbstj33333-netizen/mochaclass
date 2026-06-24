@@ -1443,10 +1443,10 @@ section > .outline-button,
     -webkit-overflow-scrolling: touch; scrollbar-width: none;
   }
   .quick-grid::-webkit-scrollbar { display: none; }
-  .quick-item { flex: 0 0 auto; width: 76px; scroll-snap-align: start; }
+  .quick-item { flex: 0 0 auto; width: 84px; scroll-snap-align: start; }
   .quick-item img {
-    width: 30px; height: 30px; padding: 14px;     /* 아이콘 이미지 확 축소 */
-    border: 1px solid #f0dfcf; border-radius: 50%;  /* 원형 테두리 타일 */
+    width: 46px; height: 46px; padding: 12px;       /* 아이콘 크게 + 여백 줄여 꽉차게 */
+    border: 1px solid #f0dfcf; border-radius: 50%;  /* 원형 테두리 타일(약 72px) */
     background: #fff; box-sizing: content-box;
     box-shadow: 0 6px 16px rgba(118, 86, 62, 0.07);
   }
