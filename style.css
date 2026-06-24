@@ -1267,16 +1267,16 @@ section > .outline-button,
     overflow: hidden; min-height: 0; min-width: 0;
     margin: 0; padding: 0 10px;   /* 세로 패딩 0 → 접힘 시 트랙 0 으로 완전히 접힘(주황 띠 잔상 제거) */
     border: 0; box-shadow: none;
-    background: var(--orange); border-radius: 12px;
+    background: #ffe7d3; border-radius: 12px;   /* 2차 메뉴 배경: 연한 피치톤 */
     -webkit-backdrop-filter: none; backdrop-filter: none;
     opacity: 1; clip-path: none; transform: none; pointer-events: auto;
   }
   .nav-shell .nav-menu .sub-menu a {
     display: block; opacity: 1; transform: none; background: none;
-    color: #ffffff; -webkit-text-fill-color: #ffffff;
+    color: #b5611b; -webkit-text-fill-color: #b5611b;   /* 연한 배경에 맞춰 진한 주황 글씨 */
     min-height: 0; padding: 10px 12px; font-size: 15px; border-radius: 8px;
   }
-  .nav-shell .nav-menu .sub-menu a:active { background: rgba(255, 255, 255, 0.16); }
+  .nav-shell .nav-menu .sub-menu a:active { background: rgba(181, 97, 27, 0.12); }
 
   .hero { min-height: max(100vh, 760px); }
   .hero-inner { width: min(var(--container), calc(100% - 48px)); padding-top: 40vh; }
@@ -1442,6 +1442,8 @@ section > .outline-button,
   .popular .section-title h2 { font-size: clamp(24px, 6vw, 34px); }
   .section-title h2 .br-m { display: inline; }   /* #1: 모바일에서 줄바꿈 활성화 */
   .section-title p { font-size: 15px; }
+  /* '기업 워크샵부터~' 서브카피도 섹션3(reviews) 서브카피와 동일 크기로 */
+  .popular .section-title p { font-size: 15px; }
 
   /* 섹션1 카테고리: 버튼을 눌러 펼치는 드롭다운 필터(카테고리가 버튼 안에 들어감) */
   .category-row { flex-direction: column; align-items: stretch; gap: 14px; margin-top: 24px; position: relative; z-index: 20; }   /* #2: 필터를 더 위로 */

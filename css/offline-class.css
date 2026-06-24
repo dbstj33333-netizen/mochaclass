@@ -148,7 +148,7 @@
   height: 100%;
   border: 0;
   background: transparent;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--oc-text);
 }
 .oc-search input::placeholder { color: #b6ada5; }
@@ -799,7 +799,7 @@
   .oc-reset-btn { flex: 1 1 calc(50% - 4px); margin-left: 0; min-width: 0; justify-content: center; }
   .oc-search-submit { flex: 1 1 calc(50% - 4px); margin-left: 0; min-width: 0; }
 
-  .oc-search input { font-size: 16px; }   /* iOS 자동 확대 방지 */
+  .oc-search input { font-size: 13px; }   /* 검색창 글씨 더 작게(긴 플레이스홀더가 안 잘리게) */
 
   /* 클래스 유형 탭: 좁은 화면에서 카드 밖으로 삐져나오지 않게 줄바꿈 */
   .oc-tabs { flex-wrap: wrap; gap: 8px 14px; overflow: visible; }

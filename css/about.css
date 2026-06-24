@@ -149,7 +149,7 @@
 
 /* ===== 이용 방법 (3단계, 지그재그) ===== */
 .ab-flow-sec { background: var(--ab-bg); }
-.ab-flow { display: grid; gap: 40px; }
+.ab-flow { display: grid; gap: 72px; }   /* STEP 간 간격 더 넓게 */
 .ab-step-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -299,7 +299,7 @@
   .ab-sub { font-size: 15px; }
 
   /* 3단계: 1열 적층(이미지 위 → 텍스트 아래, 좌우 정렬 통일) */
-  .ab-flow { gap: 30px; }
+  .ab-flow { gap: 56px; }   /* 모바일에서도 STEP 간 간격 더 넓게 */
   .ab-step-row { grid-template-columns: 1fr; gap: 18px; }
   .ab-step-row:nth-child(even) .ab-step-visual { order: 0; }
   .ab-step-visual { height: 220px; }
