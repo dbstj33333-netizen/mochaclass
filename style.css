@@ -1417,7 +1417,8 @@ section > .outline-button,
     background: linear-gradient(to bottom, rgba(255, 250, 243, 0) 0%, rgba(255, 250, 243, 0.7) 42%, #fffaf3 70%);
   }
   .hero h1 { font-size: clamp(30px, 8vw, 44px); }
-  .primary-button { min-width: 180px; height: 56px; margin-top: 36px; font-size: 16px; }
+  /* 모바일: 고정폭(300px) 해제 → 텍스트에 맞춰 컴팩트하게 */
+  .primary-button { width: auto; min-width: 0; height: 52px; margin-top: 34px; padding: 0 30px; font-size: 15px; }
 
   /* CTA(빠른메뉴) 아이콘 뒤 흰색 글로우 배경 숨김 */
   .quick-item::before { display: none; }
